@@ -1,0 +1,15 @@
+*.exe
+.vscode
+.idea
+.pytest_cache/
+**/__pycache__/
+/.cache/
+**/geckodriver.log
+geckodriver.log
+pytest.xml
+params.py
+/build/
+venv/
+**/screenshots/
+pip-selfcheck.json
+debug.log
