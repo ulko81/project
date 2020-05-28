@@ -6,7 +6,6 @@ from selenium.webdriver.firefox.options import Options as Firefox
 
 
 class Browser:
-    TEST_URL = 'https://staging.exist.ua'
     BROWSER_NAME = 'chrome'
 
     driver_name = {'chrome': 'chromedriver.exe',
@@ -40,9 +39,6 @@ class Browser:
         return webdriver.Firefox(firefox_options=firefox_options, desired_capabilities=caps,
                                  executable_path=self.get_driver_path())
 
-    @property
-    def default_url(self):
-        return self.TEST_URL
 
     @property
     def get_browser(self):
