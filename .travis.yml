@@ -2,7 +2,11 @@ language: python
 # command to install dependencies
 
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 before_script:
 - wget http://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip
