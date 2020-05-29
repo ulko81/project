@@ -2,8 +2,6 @@
 
 language: python
 # command to install dependencies
-dist: trusty
-sudo: false
 
 addons:
   chrome: stable
