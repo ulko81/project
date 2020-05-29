@@ -11,4 +11,3 @@ beautifulsoup4==4.8.1
 pytest-rerunfailures==8.0
 flaky==3.6.1
 psycopg2-binary==2.8.4
-pytest-check==0.3.7
