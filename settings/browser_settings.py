@@ -13,7 +13,7 @@ class Browser:
                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
-                   'linux': '/bin/'
+                   'linux': '/home/travis/virtualenv/python3.6.7/bin/'
                   }
 
     def get_driver_path(self):
