@@ -1,5 +1,2 @@
 selenium==3.141.0
 pytest>=4.4.0
-pytest-xvfb==1.2.0
-pytest-xdist==1.30.0
-pytest-rerunfailures==8.0
