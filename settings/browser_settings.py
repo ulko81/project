@@ -13,12 +13,12 @@ class Browser:
                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
-                   'linux': '/web_drivers/'
+                   'linux': '/bin/'
                   }
 
     def get_driver_path(self):
         if os.name == 'posix':
-            return os.path.join(os.environ['HOME'], self.drivers_dir['linux'],self.driver_name[self.get_browser][:-4])
+            return os.path.join(os.environ['HOME'], self.drivers_dir['linux'], self.driver_name[self.get_browser][:-4])
         else:
             return os.path.join(self.drivers_dir['windows'], self.driver_name[self.get_browser])
 
