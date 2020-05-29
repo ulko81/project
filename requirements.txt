@@ -5,7 +5,6 @@ selenium==3.141.0
 pytest<5.3.0
 pytest-xvfb==1.2.0
 pytest-xdist==1.30.0
-selene==1.0.0a16
 transliterate==1.10.2
 beautifulsoup4==4.8.1
 pytest-rerunfailures==8.0
