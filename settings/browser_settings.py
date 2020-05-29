@@ -28,6 +28,7 @@ class Browser:
         capabilities["pageLoadStrategy"] = page_load_strategy
         chrome_options.add_argument('--window-size={width_},{height_}'.format(width_=width, height_=height))
         chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
         return webdriver.Chrome(options=chrome_options, desired_capabilities=capabilities,
                                 executable_path=self.get_driver_path())
