@@ -9,7 +9,7 @@ class Browser:
     BROWSER_NAME = 'chrome'
 
     driver_name = {'chrome': 'chromedriver.exe',
-                   'firefox':'geckodriver.exe'
+                   'firefox': 'geckodriver.exe'
                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
@@ -18,7 +18,7 @@ class Browser:
 
     def get_driver_path(self):
         if os.name == 'posix':
-            return os.path.join(os.environ['HOME'], self.drivers_dir['linux'],self.driver_name[self.get_browser][:-3])
+            return os.path.join(os.environ['HOME'], self.drivers_dir['linux'],self.driver_name[self.get_browser][:-4])
         else:
             return os.path.join(self.drivers_dir['windows'], self.driver_name[self.get_browser])
 
