@@ -20,6 +20,7 @@ class TestCart:
         header_cart = HeaderPage(self.driver)
         product_card = ProductCardPage(self.driver)
         self.driver.get(TEST_URL + PRODUCT_CARD_LINK)
+        print(['HOME'])
         product_card.click_button_buy()
         assert product_card.check_present_green_button_buy()
         assert '1' == header_cart.text_digit_cart_header()
