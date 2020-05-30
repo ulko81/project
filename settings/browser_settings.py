@@ -13,7 +13,7 @@ class Browser:
                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
-                   'linux': '/home/travis/virtualenv/python3.6.7/bin/'
+                   'linux': '/virtualenv/python3.6.7/bin/'
                   }
 
     def get_driver_path(self):
@@ -21,6 +21,7 @@ class Browser:
             return os.path.join(os.environ['HOME'], self.drivers_dir['linux'], self.driver_name[self.get_browser][:-4])
         else:
             return os.path.join(self.drivers_dir['windows'], self.driver_name[self.get_browser])
+
 
     def set_chrome(self, width=1920, height=1080, page_load_strategy='normal'):
         chrome_options = Chrome()

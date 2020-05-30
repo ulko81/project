@@ -17,7 +17,6 @@ class TestCart:
         assert product_card.text_card_price().lower() == header_cart.text_cart_header_price().lower()
 
     def test_cart_in_header_add_from_product_card(self):
-        print(['HOME'])
         assert(1==1)
 
     def test_in_header_add_from_product_card(self):
