@@ -9,7 +9,7 @@ driver_name = {'chrome': 'chromedriver.exe',
                }
 
 drivers_dir = {'windows': os.path.abspath('../drivers/'),
-               'linux': '/home/travis/virtualenv/python3.6.7/bin/'
+               'linux': '/virtualenv/python3.6.7/bin/'
                }
 
 r = os.path.join(os.environ['HOME'], drivers_dir['linux'], driver_name[get_browser()][:-4])
