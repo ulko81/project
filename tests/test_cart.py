@@ -6,7 +6,7 @@ from settings.product_setting import TEST_URL, PRODUCT_CARD_LINK
 @pytest.mark.usefixtures('get_driver')
 class TestCart:
 
-    @pytest.mark.cart
+    @pytest.mark.skip
     def test_check_cart_in_header_add_from_product_card(self):
         header_cart = HeaderPage(self.driver)
         product_card = ProductCardPage(self.driver)
