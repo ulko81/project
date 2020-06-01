@@ -20,5 +20,5 @@ script:
   - pytest --html=report.html
 
 after_script:
-  -apt-get install mailutils
+  apt-get install mailutils
 
