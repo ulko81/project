@@ -17,10 +17,11 @@ install:
 
 # command to run tests
 script:
-  - pytest --html=report.html
+  - pytest
 
 after_script:
   - sudo apt update
+  - sudo apt-get install sendmail
   - sudo apt-get install mutt
   - echo 'Travis Report' | mutt -s 'Travis' zmeyko81@gmail.com
 
