@@ -21,6 +21,6 @@ script:
 
 after_script:
   - sudo apt update
-  - sudo apt-get install mailutils
-  - echo 'Travis Report' | mail -s 'Travis' zmeyko81@gmail.com
+  - sudo apt-get install mutt
+  - echo 'Travis Report' | mutt -s 'Travis' zmeyko81@gmail.com
 
