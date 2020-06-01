@@ -23,3 +23,6 @@ install:
 # command to run tests
 script:
   - pytest --html=report.html
+
+after_script:
+  -echo 'Travis Report' | mail -s 'Travis' -A /home/travis/build/ulko81/project/report.html  zmeyko81@gmail.com
