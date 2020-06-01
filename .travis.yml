@@ -23,5 +23,5 @@ after_script:
   - sudo apt update
   - sudo apt-get install sendmail
   - sudo apt-get install mutt
-  - echo 'Travis Report' | mutt -s 'Travis' zmeyko81@gmail.com
+  - echo 'Travis Report' | mutt -s 'Travis' zmeyko81@gmail.com /home/travis/build/ulko81/project/reports/Report.html
 
