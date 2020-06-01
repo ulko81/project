@@ -20,4 +20,5 @@ script:
   - pytest --html=report.html
 
 after_script:
+  -sudo apt-get install mailutils
   -echo 'Travis Report' | mail -s 'Travis' -a /home/travis/build/ulko81/project/report.html  zmeyko81@gmail.com
