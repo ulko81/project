@@ -21,4 +21,4 @@ script:
 
 after_script:
   -apt-get install mailutils
-  -echo 'Travis Report' | mail -s 'Travis' -a /home/travis/build/ulko81/project/report.html  zmeyko81@gmail.com
+  -echo 'Travis Report' | mail -s 'Travis' -A /home/travis/build/ulko81/project/report.html  zmeyko81@gmail.com
