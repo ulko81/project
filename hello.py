@@ -14,7 +14,4 @@ drivers_dir = {'windows': os.path.abspath('../drivers/'),
 
 r = os.path.join(drivers_dir['linux'], driver_name[get_browser()][:-4])
 print(r)
-"""-echo
-'Travis Report' | mail - s
-'Travis'
-zmeyko81 @ gmail.com - A / home / travis / build / ulko81 / project / report.html"""
+"""-A /home/travis/build/ulko81/project/report.html"""
