@@ -22,7 +22,7 @@ addons:
   artifacts:
     debug: true
     paths:
-      - /reports/*.html
+      - /reports/Report.html
     target_paths: $TRAVIS_BUILD_NUMBER
 
 
