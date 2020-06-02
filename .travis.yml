@@ -18,12 +18,11 @@ script:
 
 addons:
   chrome: stable
-  artifacts:
-    debug: true
-    paths:
-      - ./reports
-    target_paths: $TRAVIS_BUILD_NUMBER
-    working_dir: WORKING_DIR
-    bucket: travisbucketulko
-    s3_region: eu-north-1
+
+deploy:
+  provider: s3
+  access_key_id: "AKIAIT7TML7FTVXQFGAQ"
+  secret_access_key: "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"
+  bucket: "travisbucketulko"
+  glob: "*.html"
 
