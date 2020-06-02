@@ -1,17 +1,26 @@
-import os
-
-
-def get_browser():
-    return 'chrome'
-
-driver_name = {'chrome': 'chromedriver.exe',
-               'firefox': 'geckodriver.exe'
-               }
-
-drivers_dir = {'windows': os.path.abspath('../drivers/'),
-               'linux': os.environ['HOME'] + '/virtualenv/python3.6.7/bin/'
-               }
-
-r = os.path.join(drivers_dir['linux'], driver_name[get_browser()][:-4])
-print(r)
-"""-A /home/travis/build/ulko81/project/report.html"""
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+mail_content = '''Hello,
+This is a simple mail. There is only text, no attachments are there The mail is sent using Python SMTP library.
+Thank'''
+#The mail addresses and password
+sender_address = 'zmeyko81@gmail.com'
+sender_pass = '13e05nuf'
+receiver_address = 'zmeyko81@gmail.com'
+print(sender_address , sender_pass)
+#Setup the MIME
+message = MIMEMultipart()
+message['From'] = sender_address
+message['To'] = receiver_address
+message['Subject'] = 'A test mail sent by Python. It has an attachment.'   #The subject line
+#The body and the attachments for the mail
+message.attach(MIMEText(mail_content, 'plain'))
+#Create SMTP session for sending the mail
+session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+session.starttls() #enable security
+session.login('zmeyko81@gmail.com', '13e05nuf') #login with mail_id and password
+text = message.as_string()
+session.sendmail(sender_address, receiver_address, text)
+session.quit()
+print('Mail Sent')

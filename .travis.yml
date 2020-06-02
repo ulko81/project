@@ -3,9 +3,6 @@
 language: python
 # command to install dependencies
 
-addons:
-  chrome: stable
-
 before_script:
 - wget http://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip
 - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6.7/bin/
@@ -19,9 +16,14 @@ install:
 script:
   - pytest
 
-after_script:
-  - sudo apt update
-  - sudo apt-get install sendmail
-  - sudo apt-get install mailutils
-  - echo 'Travis Report' | mail -s 'Travis' zmeyko81@gmail.com
+addons:
+  chrome: stable
+  artifacts:
+    debug: true
+    paths:
+      - ./tests/reports
+    target_paths: $TRAVIS_BUILD_NUMBER
+    working_dir: WORKING_DIR
+    bucket: travisbucketulko
+    s3_region: eu-north-1
 
