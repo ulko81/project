@@ -22,7 +22,7 @@ addons:
   artifacts:
     debug: true
     paths:
-      - /reports/Report.html
+      - $HOME/build/ulko81/project/reports/Report.html
     target_paths: $TRAVIS_BUILD_NUMBER
 
 
