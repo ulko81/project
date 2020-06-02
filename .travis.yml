@@ -24,6 +24,7 @@ addons:
     paths:
       - $HOME/build/ulko81/project/reports/Report.html
     target_paths: $TRAVIS_BUILD_NUMBER
+    s3_region: eu-north-1
 
 
 
