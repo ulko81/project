@@ -21,8 +21,8 @@ addons:
 
   artifacts:
     debug: true
-
-    working_dir: reports
+    paths:
+      - ./reports/
 
     s3_region: eu-west-1
 
