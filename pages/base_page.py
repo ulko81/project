@@ -4,8 +4,10 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 import exception
 
+
+
 class BasePage:
-    default_timeout = 10
+    default_timeout = 30
     default_delay = 1
 
     def __init__(self, driver):
@@ -49,7 +51,7 @@ class BasePage:
         except TimeoutException as e:
             raise exception.ElementNotFoundException(item, e)
 
-    def click(self, item, delay=None):
+    def click(self, item):
         try:
             element = self.wait.until(expected_conditions.element_to_be_clickable(item))
         except TimeoutException as e:
@@ -69,11 +71,16 @@ class BasePage:
     def delay_test(self, delay=None):
         time.sleep(delay or self.delay)
 
-    def check_text_present_in_element(self, item, text):
+    def text_present_in_element(self, item, text):
         try:
             element = self.wait.until(expected_conditions.text_to_be_present_in_element(item, text))
             return element
         except TimeoutException as e:
             raise exception.ElementNotFoundException(item, e)
 
-
+    def amount_of_elements(self, item):
+        try:
+            element = self.wait.until(expected_conditions.presence_of_all_elements_located(item))
+            return len(element)
+        except TimeoutException as e:
+            raise exception.ElementNotFoundException(item, e)
