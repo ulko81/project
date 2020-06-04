@@ -4,4 +4,4 @@ class ElementNotFoundException(Exception):
         self.item = item
 
     def __str__(self):
-        return "The element with {0} '{1}' was not found".format(*self.item)
+        return "The element with By.{0} and locator - '{1}' was not found".format(*self.item)
