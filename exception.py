@@ -1,5 +1,5 @@
 class ElementNotFoundException(Exception):
-    def __init__(self, item):
+    def __init__(self, item, cause = None):
         super(ElementNotFoundException, self).__init__()
         self.item = item
 
