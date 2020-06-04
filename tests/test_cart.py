@@ -32,7 +32,6 @@ class TestCart:
         format_price = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-3:]
         assert format_price == header_cart.text_cart_header_price().lower()
 
-
     def test_in_header_add_from_product_card(self):
         header_page = HeaderPage(self.driver)
         self.driver.get(TEST_URL)
