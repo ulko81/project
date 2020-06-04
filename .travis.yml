@@ -8,14 +8,6 @@ before_script:
 - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6.7/bin/
 - export CHROME_BIN=chromium-browser
 
-
-install:
-  - pip install -r requirements.txt
-
-# command to run tests
-script:
-  - pytest
-
 addons:
   chrome: stable
 
@@ -25,6 +17,14 @@ addons:
       - $HOME/build/ulko81/project/reports/Report.html
     target_paths: /
     s3_region: eu-west-1
+
+
+install:
+  - pip install -r requirements.txt
+
+# command to run tests
+script:
+  - pytest
 
 
 
