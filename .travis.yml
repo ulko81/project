@@ -3,6 +3,8 @@
 language: python
 # command to install dependencies
 
+
+
 before_script:
 - wget http://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip
 - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6.7/bin/
@@ -11,13 +13,15 @@ before_script:
 addons:
   chrome: stable
 
-  #artifacts:
-  #  debug: true
-   # paths:
-    #  - $HOME/build/ulko81/project/reports/Report.html
-    #target_paths: /
+  artifacts:
+    debug: true
+    paths:
+      - $HOME/build/ulko81/project/reports/Report.html
+    target_paths: /
     #s3_region: eu-west-1
 
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 install:
   - pip install -r requirements.txt
