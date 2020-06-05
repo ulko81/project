@@ -4,19 +4,19 @@ language: python
 # command to install dependencies
 
 before_script:
-- wget http://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip
-- unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6.7/bin/
-- export CHROME_BIN=chromium-browser
+#- wget http://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip
+#- unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6.7/bin/
+#- export CHROME_BIN=chromium-browser
 
 addons:
   chrome: stable
 
-  artifacts:
-    debug: true
-    paths:
-      - $HOME/build/ulko81/project/reports/Report.html
-    target_paths: /
-    s3_region: eu-west-1
+  #artifacts:
+  #  debug: true
+   # paths:
+    #  - $HOME/build/ulko81/project/reports/Report.html
+    #target_paths: /
+    #s3_region: eu-west-1
 
 
 install:
@@ -24,8 +24,8 @@ install:
 
 # command to run tests
 script:
-  - pytest
- #- python hello.py
+  #- pytest
+ - python hello.py
 
 
 
