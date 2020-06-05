@@ -8,7 +8,6 @@ from settings.product_setting import TEST_URL, product_OC90_links
 @pytest.mark.usefixtures('get_driver')
 class TestCart:
 
-    @pytest.mark.skip
     def test_check_cart_in_header_add_from_product_card(self):
         header_cart = HeaderPage(self.driver)
         product_card = ProductCardPage(self.driver)
@@ -18,7 +17,6 @@ class TestCart:
         assert '1' == header_cart.text_digit_cart_header()
         assert product_card.text_card_price().lower() == header_cart.text_cart_header_price().lower()
 
-    @pytest.mark.skip
     def test_cart_in_header_add_from_search_page(self):
         header_cart = HeaderPage(self.driver)
         search_page = SearchPage(self.driver)
