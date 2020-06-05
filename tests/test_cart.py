@@ -27,7 +27,7 @@ class TestCart:
             buy_buttons[i-1].click()
             assert header_cart.check_text_digit_cart_header(str(i))
         assert len(prices) == search_page.get_amount_of_search_recommended_buttons_buy_green()
-        format_price = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-3:]
+        format_price = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-4:]
         assert format_price == header_cart.text_cart_header_price().lower()
 
     def test_in_header_add_from_product_card(self):
