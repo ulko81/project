@@ -7,7 +7,6 @@
 **/geckodriver.log
 geckodriver.log
 pytest.xml
-params.py
 /build/
 venv/
 **/screenshots/
