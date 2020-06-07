@@ -1,4 +1,4 @@
-from settings.browser_settings import Browser
+from settings.browser_setting import Browser
 import pytest
 import time
 browser = {
