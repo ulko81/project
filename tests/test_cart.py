@@ -13,7 +13,7 @@ from settings.project_setting import TEST_URL, project_page
 class TestCart:
 
     @pytest.mark.cart
-    def test_check_cart_in_header_add_from_product_card(self):
+    def test_cart_in_header_add_from_product_card(self):
         header_cart = HeaderPage(self.driver)
         product_card = ProductCardPage(self.driver)
         self.driver.get(TEST_URL + project_page.get('product_card'))
@@ -23,7 +23,7 @@ class TestCart:
         assert header_cart.text_cart_price().lower() in product_card.text_price().lower()
 
     @pytest.mark.cart
-    def test_check_cart_in_header_add_from_product_card_offers(self):
+    def test_cart_in_header_add_from_product_card_offers(self):
         header_cart = HeaderPage(self.driver)
         product_card = ProductCardPage(self.driver)
         self.driver.get(TEST_URL + project_page.get('product_card'))
