@@ -11,7 +11,7 @@ class CatalogPage(BasePage, CatalogLocator, GeneralLocator):
     def click_first_buy_button(self):
         self.get_web_elements(self.button_blue)[0].click()
 
-    def check_present_green_button_buy(self):
+    def check_present_button_in_cart(self):
         return self.get_web_element(self.button_green)
 
     def text_first_price(self):

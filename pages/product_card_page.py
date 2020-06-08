@@ -11,16 +11,19 @@ class ProductCardPage(ProductCardLocator, BasePage, GeneralLocator):
     def click_button_buy(self):
         self.click(self.button_buy_blue)
 
-    def check_present_green_button_buy(self):
+    def click_to_cart_button(self):
+        self.click(self.button_buy_green)
+
+    def check_present_button_in_cart(self):
         return self.get_web_element(self.button_buy_green)
 
-    def text_card_price(self):
+    def text_price(self):
         return self.get_web_element(self.card_price).text
 
-    def get_first_offers_buy_blue_button(self):
-        return self.get_web_elements(self.first_offers_buy_blue_button)
+    def get_first_offers_buy_button(self):
+        return self.get_web_elements(self.first_offers_buy_button)
 
-    def amount_offers_green_button_buy(self):
+    def amount_offers_button_in_cart(self):
         return len(self.get_web_elements(self.button_green))
 
     def list_text_first_offers_price(self):

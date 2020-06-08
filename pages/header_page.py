@@ -11,7 +11,7 @@ class HeaderPage(BasePage, HeaderLocator, GeneralLocator):
     def text_digit_cart_header(self):
         return self.get_web_element(self.digit_cart_header).text
 
-    def text_cart_header_price(self):
+    def text_cart_price(self):
         return self.get_web_element(self.cart_header_price).text
 
     def check_text_digit_cart_header(self, digit):
