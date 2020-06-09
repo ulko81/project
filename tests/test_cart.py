@@ -7,10 +7,11 @@ from pages.main_page import MainPage
 from pages.cart_page import CartPage
 from pages.full_search_product_page import FullSearchProductPage
 from settings.project_setting import TEST_URL, project_page
+from methods.general_method import GeneralMethod
 
 
 @pytest.mark.usefixtures('get_driver')
-class TestCart:
+class TestCart(GeneralMethod):
 
     @pytest.mark.cart
     def test_cart_in_header_add_from_product_card(self):
@@ -21,6 +22,25 @@ class TestCart:
         assert product_card.check_present_button_in_cart()
         assert '1' == header_cart.text_digit_cart_header()
         assert header_cart.text_cart_price().lower() in product_card.text_price().lower()
+
+    def test_comparison_info_cart_vs_product_card(self):
+        import time
+        header_cart = HeaderPage(self.driver)
+        cart = CartPage(self.driver)
+        product_card = ProductCardPage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('product_card'))
+        page_info = product_card.set_product_info()
+        #print(page_info)
+        product_card.click_button_buy()
+        product_card.click_to_cart_button()
+        cart_info = cart.set_product_info()
+        #print(cart_info)
+
+        # header_cart.click_cart_in_header()
+
+
+        #product_card.click_button_buy()
+        #assert product_card.check_present_button_in_cart()
 
     @pytest.mark.cart
     def test_cart_in_header_add_from_product_card_offers(self):
@@ -102,3 +122,20 @@ class TestCart:
         assert full_search_product_page.check_button_in_cart()
         assert '1' == header_cart.text_digit_cart_header()
         assert header_cart.text_cart_price().lower() in full_search_product_page.text_price().lower()
+
+    @pytest.mark.cart
+    def test_cart_in_header_add_from_vin_request(self):
+        import time
+        self.driver.get(TEST_URL)
+        self.login(self.driver)
+        time.sleep(30)
+        #header_cart = HeaderPage(self.driver)
+        #self.driver.get(TEST_URL)
+        #auth_method = GeneralMethod(self.driver)
+
+        #full_search_product_page = FullSearchProductPage(self.driver)
+        #self.driver.get(TEST_URL + project_page.get('full-search-product'))
+        #full_search_product_page.click_first_buy_button()
+        #assert full_search_product_page.check_button_in_cart()
+        #assert '1' == header_cart.text_digit_cart_header()
+        #assert header_cart.text_cart_price().lower() in full_search_product_page.text_price().lower()

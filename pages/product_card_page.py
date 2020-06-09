@@ -28,3 +28,25 @@ class ProductCardPage(ProductCardLocator, BasePage, GeneralLocator):
 
     def list_text_first_offers_price(self):
         return list(map(lambda el: el.text, self.get_web_elements(self.first_offers_price)))
+
+    def text_name(self):
+        name = self.get_web_element(self.h1).text
+        return name[:name.find('(')-1]
+
+    def text_brand(self):
+        return self.get_web_element(self.product_brand).text
+
+    def text_vendor_code(self):
+        return self.get_web_element(self.product_vendor_code).text
+
+    def text_delivery(self):
+        attr = self.get_web_element(self.delivery_date).get_attribute('class')
+        if 'today-exist' in attr:
+            return self.get_web_element(self.delivery_date).text
+        else:
+            return self.get_web_element(self.delivery_date).text + self.get_web_element(self.delivery_time).text
+
+    def set_product_info(self):
+        return {self.text_name(), self.text_brand(), self.text_vendor_code(), self.text_delivery(), self.text_price()}
+
+
