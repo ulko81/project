@@ -1,5 +1,5 @@
 import os
-from pages.header_page import HeaderPage
+from pages.header import HeaderPage
 from settings.user_setting import user_login, user_pass
 
 
@@ -17,11 +17,11 @@ class GeneralMethod:
         if not login:
             login = self.get_username
             password = self.get_password
-        header_page = HeaderPage(driver)
-        header_page.click_empty_profile()
-        header_page.fill_module_phone_field(login)
-        header_page.fill_module_pass_field(password)
-        header_page.click_module_enter()
+        header = HeaderPage(driver)
+        header.click_empty_profile()
+        header.fill_module_phone_field(login)
+        header.fill_module_pass_field(password)
+        header.click_module_enter()
 
 
 

@@ -43,7 +43,6 @@ class BasePage:
         except TimeoutException:
             return False
 
-
     def get_visible_elements(self, item):
         try:
             elements = self.wait.until(expected_conditions.visibility_of_any_elements_located(item))
