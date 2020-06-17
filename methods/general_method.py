@@ -1,6 +1,5 @@
 import os
 from pages.header import HeaderPage
-from settings.user_setting import user_login, user_pass
 
 
 class GeneralMethod:
