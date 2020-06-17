@@ -7,11 +7,19 @@ class GeneralMethod:
 
     @property
     def get_username(self):
-        return os.environ.get('USER_LOGIN') if os.environ.get('CI') else user_login
+        if os.environ.get('CI'):
+            return os.environ.get('USER_LOGIN')
+        else:
+            from settings.user_setting import user_login
+            return user_login
 
     @property
     def get_password(self):
-        return os.environ.get('USER_PASS') if os.environ.get('CI') else user_pass
+        if os.environ.get('CI'):
+            return os.environ.get('USER_PASS')
+        else:
+            from settings.user_setting import user_pass
+            return user_pass
 
     def login(self, driver, login=None, password=None):
         if not login:
