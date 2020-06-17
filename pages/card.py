@@ -26,8 +26,8 @@ class CardPage(BasePage, CardButton, Button, CardTextField, TextField):
     def get_first_offers_buy_button(self):
         return self.get_web_elements(self.card_first_offer_button_blue)
 
-    def click_offers_in_cart_button(self):
-        return self.click(self.card_first_offer_button_green)
+    def click_offer_in_cart_button(self):
+        return self.click(self.button_green)
 
     @property
     def amount_offers_button_in_cart(self):
@@ -64,20 +64,11 @@ class CardPage(BasePage, CardButton, Button, CardTextField, TextField):
 
     @property
     def text_delivery(self):
-        attr = self.get_web_element(self.card_delivery_date).get_attribute('class')
-        if 'today-exist' in attr:
-            return self.get_web_element(self.card_delivery_date).text.lower()
-        else:
-            return self.get_web_element(self.card_delivery_date).text + \
-                   self.get_web_element(self.card_delivery_time).text.lower()
+        return self.get_web_element(self.card_delivery).text.lower()
 
     def text_first_offers_delivery(self, order):
-        attr = self.get_web_elements(self.card_first_offer_delivery_date)[order].get_attribute('class')
-        if 'today-exist' in attr:
-            return self.get_web_elements(self.card_first_offer_delivery_date)[order].text.lower()
-        else:
-            return self.get_web_elements(self.card_first_offer_delivery_date)[order].text + \
-                   self.get_web_elements(self.card_first_offer_delivery_time)[order].text.lower()
+        return self.get_web_elements(self.card_first_offer_delivery)[order].text.lower()
+
 
     def set_product_info(self):
         return {self.text_name, self.text_brand, self.text_vendor_code, self.text_delivery, self.text_price}

@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 class Button:
     button_blue = By.CLASS_NAME, 'btn-blue'
     button_green = By.CLASS_NAME, 'btn-green'
+    button_white = By.CLASS_NAME, 'btn-white'
+    button_darkblue = By.CLASS_NAME, 'btn-darkblue'
 
 
 class HeaderButton:
@@ -43,5 +45,7 @@ class ModuleButton:
     module_button_cart_order = By.CSS_SELECTOR, 'a[href = "/checkout/"]'
     module_button_to_cart = By.CSS_SELECTOR, '.buttons a[href = "/cart/"]'
 
+
 class MainButton:
-    pass
+    you_watched_button_blue = By.CSS_SELECTOR, '.info-block-wrapper .btn-blue'
+    you_watched_button_green = By.CSS_SELECTOR, '.info-block-wrapper .btn-green'
