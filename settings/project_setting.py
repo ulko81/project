@@ -6,5 +6,6 @@ project_page = {
     'catalog': '/filtry-vozdushnye/',
     'full-search-product': '/search-result-products/?query=oc90',
     'cart': '/cart/',
-    'request_by_vin': '/request-by-vin/480204/'
+    'request_by_vin': '/request-by-vin/480204/',
+    'sitemap': '/sitemap.xml'
 }
