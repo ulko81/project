@@ -1,5 +1,6 @@
 import os
 from pages.header import HeaderPage
+from pages.main import MainPage
 
 
 class GeneralMethod:
@@ -29,6 +30,14 @@ class GeneralMethod:
         header.fill_module_phone_field(login)
         header.fill_module_pass_field(password)
         header.click_module_enter()
+
+    @staticmethod
+    def change_language(driver, selected_language):
+        language = HeaderPage(driver)
+        current_language = language.text_current_language
+        if current_language != selected_language:
+            language.click_language_select()
+            language.click_module_language_option(selected_language)
 
 
 

@@ -2,12 +2,13 @@ from pages.base_page import BasePage
 from locators.text_field import HeaderTextField, TextField, ModuleTextField
 from locators.input_field import ModuleInputField, InputField
 from locators.button import Button, HeaderButton
+from locators.select import Select, ModuleSelect, HeaderSelect
 
 from methods.general_func import change_format_date_cart
 
 
 class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button, HeaderButton, TextField,
-                 ModuleTextField):
+                 ModuleTextField, Select, ModuleSelect, HeaderSelect):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -66,3 +67,19 @@ class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button
 
     def set_product_info(self):
         return {self.text_price, self.text_name, self.text_brand, self.text_vendor_code, self.text_delivery}
+
+    def click_module_language_option(self, text):
+        self.get_element_with_text(text).click()
+
+    def click_language_select(self):
+        self.click(self.header_language_select)
+
+    @property
+    def text_current_language(self):
+        return self.get_web_element(self.header_language_select).text
+
+
+
+    @property
+    def text_languages_module(self):
+        return ' '.join(tuple(map(lambda el: el.text, self.get_web_elements(self.module_language_select))))

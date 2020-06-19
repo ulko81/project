@@ -1,5 +1,7 @@
 TEST_URL = 'https://exist.ua'
 
+language = ('RU', 'UA', 'EN')
+
 project_page = {
     'product_card': '/mahle-knecht-brand/filtr-masljanyj-oc-90-14305477/',
     'search': '/search/?query=oc90',

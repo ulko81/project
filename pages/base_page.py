@@ -3,6 +3,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 import exception
+from selenium.webdriver.common.by import By
 
 
 
@@ -83,3 +84,36 @@ class BasePage:
             return len(element)
         except TimeoutException as e:
             raise exception.ElementNotFoundException(item, e)
+
+    def get_element_with_text(self, text):
+        item = By.XPATH, '//*[text() = "{}"]'.format(text)
+        try:
+            element = self.wait.until(expected_conditions.presence_of_element_located(item))
+            return element
+        except TimeoutException as e:
+            raise exception.ElementNotFoundException(item, e)
+
+    def get_elements_with_text(self, text):
+        item = 'By.Xpath', '//*[text() = "{}"]'.format(text)
+        try:
+            element = self.wait.until(expected_conditions.presence_of_all_elements_located(item))
+            return element
+        except TimeoutException as e:
+            raise exception.ElementNotFoundException(item, e)
+
+    def get_element_contain_text(self, text):
+        item = 'By.Xpath', '//*[contains(text(), "{}")]'.format(text)
+        try:
+            element = self.wait.until(expected_conditions.presence_of_element_located(item))
+            return element
+        except TimeoutException as e:
+            raise exception.ElementNotFoundException(item, e)
+
+    def get_elements_contains_text(self, text):
+        item = By.XPATH, '//*[contains(text(), "{}")]'.format(text)
+        try:
+            element = self.wait.until(expected_conditions.presence_of_all_elements_located(item))
+            return element
+        except TimeoutException as e:
+            raise exception.ElementNotFoundException(item, e)
+

@@ -42,3 +42,7 @@ class MainPage(BasePage, MainButton, Button, MainTextField, TextField):
     def set_you_watched_product_info(self):
         return {self.text_first_name, self.text_first_brand, self.text_first_vendor_code, self.text_first_delivery,
                 self.text_first_price}
+
+    @property
+    def text_title_block(self):
+        return tuple(map(lambda el: el.text, self.get_web_elements(self.title_block)))
