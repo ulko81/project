@@ -1,6 +1,8 @@
 import os
 from pages.header import HeaderPage
-from pages.main import MainPage
+from pages.checkout import CheckoutPage
+from locators.icon import Icon
+from pages.base_page import BasePage
 
 
 class GeneralMethod:
@@ -31,6 +33,15 @@ class GeneralMethod:
         header.fill_module_pass_field(password)
         header.click_module_enter()
 
+    def login_checkout(self, driver, login=None, password=None):
+        if not login:
+            login = self.get_username
+            password = self.get_password
+        checkout = CheckoutPage(driver)
+        checkout.fill_checkout_phone_field(login)
+        checkout.fill_checkout_pass_field(password)
+        checkout.click_checkout_enter()
+
     @staticmethod
     def change_language(driver, selected_language):
         language = HeaderPage(driver)
@@ -39,7 +50,15 @@ class GeneralMethod:
             language.click_language_select()
             language.click_module_language_option(selected_language)
 
-
+    @staticmethod
+    def wait_client_loader(driver):
+        timeout = 10
+        preloader = BasePage(driver, timeout)
+        try:
+            preloader.get_visible_element(Icon.icon_preload)
+        except Exception:
+            pass
+        preloader.check_invisible_element(Icon.icon_preload)
 
 
 

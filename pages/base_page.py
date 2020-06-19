@@ -11,9 +11,11 @@ class BasePage:
     default_timeout = 30
     default_delay = 1
 
-    def __init__(self, driver):
+    def __init__(self, driver, timeout=None):
         self.driver = driver
         self.delay = self.default_delay
+        if timeout:
+            self.default_timeout = timeout
         self.wait = WebDriverWait(self.driver, self.default_timeout)
 
     def get_web_element(self, item):

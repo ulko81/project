@@ -10,7 +10,7 @@ class Button:
 
 class HeaderButton:
     profile_empty = By.CSS_SELECTOR, '.profile button'
-    profile_with_auth = By.CSS_SELECTOR, '.profile .colored'
+    profile_with_auth = By.CSS_SELECTOR, '.profile .colored .user-menu-title'
     cart_with_items = By.CSS_SELECTOR, '.cart .lowerCase .user-menu-title'
     cart_without_items = By.CSS_SELECTOR, '.cart .user-menu-title'
 

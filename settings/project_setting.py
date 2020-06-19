@@ -11,3 +11,6 @@ project_page = {
     'request_by_vin': '/request-by-vin/480204/',
     'sitemap': '/sitemap.xml'
 }
+test_user = {
+    'name': 'Веб-тестировщик'
+}

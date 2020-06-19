@@ -1,13 +1,13 @@
 from pages.base_page import BasePage
 from locators.text_field import HeaderTextField, TextField, ModuleTextField
 from locators.input_field import ModuleInputField, InputField
-from locators.button import Button, HeaderButton
+from locators.button import Button, HeaderButton, ModuleButton
 from locators.select import Select, ModuleSelect, HeaderSelect
 
 from methods.general_func import change_format_date_cart
 
 
-class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button, HeaderButton, TextField,
+class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button, HeaderButton, ModuleButton, TextField,
                  ModuleTextField, Select, ModuleSelect, HeaderSelect):
 
     def __init__(self, driver):
@@ -78,8 +78,13 @@ class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button
     def text_current_language(self):
         return self.get_web_element(self.header_language_select).text
 
-
-
     @property
     def text_languages_module(self):
         return ' '.join(tuple(map(lambda el: el.text, self.get_web_elements(self.module_language_select))))
+
+    @property
+    def text_profile_user(self):
+        return self.get_web_element(self.profile_with_auth).text
+
+    def click_module_button_order(self):
+        self.click(self.module_button_cart_order)

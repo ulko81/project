@@ -16,7 +16,7 @@ class Testmain(GeneralMethod):
 
     }
 
-    @pytest.mark.cart
+    @pytest.mark.main
     @pytest.mark.parametrize('current_language', language)
     def test_block_header_main_page(self, current_language):
         main = MainPage(self.driver)
