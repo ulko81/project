@@ -1,6 +1,6 @@
 from settings.browser_setting import Browser
 import pytest
-import html
+from py.xml import html
 browser = {
     'chrome':Browser().set_chrome,
     'firefox':Browser().set_firefox
