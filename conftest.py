@@ -1,6 +1,6 @@
 from settings.browser_setting import Browser
 import pytest
-import time
+import html
 browser = {
     'chrome':Browser().set_chrome,
     'firefox':Browser().set_firefox
@@ -15,21 +15,9 @@ def get_driver(request):
     request.addfinalizer(close_driver)
 
 
-import pytest
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    pytest_html = item.config.pluginmanager.getplugin('html')
-    outcome = yield
-    report = outcome.get_result()
-    extra = getattr(report, 'extra', [])
-    if report.when == 'call':
-        # always add url to report
-        xfail = hasattr(report, 'wasxfail')
-        if (report.skipped and xfail) or (report.failed and not xfail):
-            # only add additional html on failure
-            extra.append(pytest_html.extras.html('<div>Additional HTML</div>'))
-        report.extra = extra
-
 def pytest_html_report_title(report):
-   report.title = "My very own title!"
+   report.title = "Report From "
+
+def pytest_html_results_table_header(cells):
+    cells.insert(1, html.th('Ticket'))
 
