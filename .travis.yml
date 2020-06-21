@@ -14,8 +14,8 @@ addons:
   artifacts:
     debug: true
     paths:
-      - $HOME/build/ulko81/project/reports
-    target_paths: /
+      - $HOME/build/ulko81/project/reports/Report.html
+    target_paths: TRAVIS_BUILD_ID/
     s3_region: eu-west-1
 
 
