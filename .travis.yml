@@ -14,7 +14,7 @@ addons:
   artifacts:
     debug: true
     paths:
-      - $HOME/build/ulko81/project/reports/Report.html
+      - $HOME/build/ulko81/project/reports
     target_paths: /
     s3_region: eu-west-1
 
