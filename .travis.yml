@@ -1,6 +1,6 @@
 
 
-#language: python
+language: python
 # command to install dependencies
 
 #before_script:
