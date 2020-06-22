@@ -22,7 +22,7 @@ jobs:
           debug: true
           paths:
             - $HOME/build/ulko81/project/reports/Report.html
-          target_paths: test-auth+$(date +'%m-%d-%Y')
+          target_paths: test-auth/$(date +'%m-%d-%Y')
           s3_region: eu-west-1
       script:
       - pytest -v -m auth
@@ -35,7 +35,7 @@ jobs:
                 debug: true
                 paths:
                   - $HOME/build/ulko81/project/reports/Report.html
-                target_paths: test-seo+$(date +'%m-%d-%Y')
+                target_paths: test-seo/$(date +'%m-%d-%Y')
                 s3_region: eu-west-1
             script:
               - pytest -v -m seo
@@ -47,11 +47,11 @@ jobs:
             debug: true
             paths:
               - $HOME/build/ulko81/project/reports/Report.html
-            target_paths: test-cart+$(date +'%m-%d-%Y')
+            target_paths: test-cart/$(date +'%m-%d-%Y')
             s3_region: eu-west-1
         script:
           - pytest -v -m cart
-    - name: seo
+    - name: main
         addons:
           chrome: stable
 
@@ -59,7 +59,7 @@ jobs:
             debug: true
             paths:
               - $HOME/build/ulko81/project/reports/Report.html
-            target_paths: test-main+$(date +'%m-%d-%Y')
+            target_paths: test-main/$(date +'%m-%d-%Y')
             s3_region: eu-west-1
         script:
           - pytest -v -m main
