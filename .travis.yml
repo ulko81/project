@@ -26,7 +26,7 @@
 
 jobs:
   include:
-    - language: python
+    - name: python
     script: - pytest -v -m auth
  #- python hello.py
 
