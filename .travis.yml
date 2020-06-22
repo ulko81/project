@@ -27,6 +27,12 @@ script:
   - pytest
  #- python hello.py
 
-
+jobs:
+  include:
+    - stage: seo
+      script: - pytest -v -m seo
+    - # stage name not required, will continue to use `test`
+    - stage: auth
+      script: - pytest -v -m auth
 
 
