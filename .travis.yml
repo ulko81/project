@@ -15,7 +15,7 @@ addons:
     debug: true
     paths:
       - $HOME/build/ulko81/project/reports/Report.html
-    target_paths: $TRAVIS_BUILD_ID
+    target_paths: $(date)
     s3_region: eu-west-1
 
 
