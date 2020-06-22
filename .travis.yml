@@ -24,8 +24,8 @@ install:
 
 # command to run tests
 script:
-  #- pytest
-  - pytest -v -m seo
+  - pytest
+  #- pytest -v -m seo
  #- python hello.py
 
 #jobs:
