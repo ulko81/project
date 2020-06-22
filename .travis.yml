@@ -25,9 +25,12 @@ install:
 
 jobs:
   include:
-    - name: test
+    - name: auth
       script:
       - pytest -v -m auth
+    - name: seo
+      script:
+        - pytest -v -m seo
  #- python hello.py
 
 
