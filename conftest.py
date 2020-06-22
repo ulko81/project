@@ -1,12 +1,11 @@
 from datetime import datetime
 from settings.browser_setting import Browser
 import pytest
-from py._xmlgen import html
 
 
 browser = {
-    'chrome':Browser().set_chrome,
-    'firefox':Browser().set_firefox
+    'chrome': Browser().set_chrome,
+    'firefox': Browser().set_firefox
 }
 
 
@@ -21,6 +20,6 @@ def get_driver(request):
 
 
 def pytest_html_report_title(report):
-   report.title = "Report From "
+   report.title = "Report From {}".format(datetime.today().strftime('%d-%m-%Y'))
 
 
