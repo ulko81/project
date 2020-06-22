@@ -13,7 +13,6 @@ class Testmain(GeneralMethod):
                'ПОПУЛЯРНІ БРЕНДИ АВТОЗАПЧАСТИН', 'АВТОГІД ПОМІЧНИК ПО ЗРУЧНОМУ ВИКОРИСТАННЮ АВТОМОБІЛЯ'),
         'EN': ('NECESSARY FOR EVERY CAR', 'POPULAR CAR MODELS', 'POPULAR MANUFACTURES', 'POPULAR PARTS',
                'POPULAR SPARE PARTS BRANDS', 'AUTO GUIDANCE VEHICLE USABILITY ASSISTANT')
-
     }
 
     @pytest.mark.main

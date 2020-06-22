@@ -88,3 +88,7 @@ class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button
 
     def click_module_button_order(self):
         self.click(self.module_button_cart_order)
+
+    @property
+    def text_mega_menu(self):
+        return tuple(map(lambda el: el.text, self.get_web_elements(self.mega_menu)))
