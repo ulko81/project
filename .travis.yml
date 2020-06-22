@@ -26,7 +26,7 @@ install:
 
 jobs:
   include:
-    - stage: test
+    - language: python
     script: - pytest -v -m auth
  #- python hello.py
 
