@@ -10,12 +10,12 @@ before_script:
 addons:
   chrome: stable
 
-  #artifacts:
-  #  debug: true
-  #  paths:
-  #    - $HOME/build/ulko81/project/reports/Report.html
-  #  target_paths: $(date +'%m-%d-%Y')
-  #  s3_region: eu-west-1
+  artifacts:
+    debug: true
+    paths:
+      - $HOME/build/ulko81/project/reports/Report.html
+    target_paths: $(date +'%m-%d-%Y')
+    s3_region: eu-west-1
 
 
 install:
