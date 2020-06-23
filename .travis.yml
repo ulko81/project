@@ -12,18 +12,20 @@ install:
 
 # command to run tests
 
+jobs:
+  include:
+    - name: auth
+      addons:
+        chrome: stable
 
-addons:
-  chrome: stable
-
-  artifacts:
-    debug: true
-    paths:
-      - $HOME/build/ulko81/project/reports/Report.html
-    target_paths: test-auth/$(date +'%m-%d-%Y')
-    s3_region: eu-west-1
-script:
-- pytest
+        artifacts:
+          debug: true
+          paths:
+            - $HOME/build/ulko81/project/reports/Report.html
+          target_paths: test-auth/$(date +'%m-%d-%Y')
+          s3_region: eu-west-1
+      script:
+      - pytest -v -m auth
 
   #  - name: seo
   #    addons:
