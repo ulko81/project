@@ -1,10 +1,13 @@
-class first:
-    x = 2,3
+class First:
+
+    @property
+    def first_first(self):
+        return 1
 
 
-class second:
+x = {'2': First().first_first}
+z = First()
+print(x['2'])
 
-    print(first.x[1])
-
-s = second()
-
+#y = z.x['2']
+#print(y)

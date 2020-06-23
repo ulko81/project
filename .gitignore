@@ -13,3 +13,4 @@ venv/
 pip-selfcheck.json
 debug.log
 **/user_setting.py
+**/api_setting.py
