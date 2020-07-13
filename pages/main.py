@@ -1,10 +1,11 @@
 from pages.base_page import BasePage
 from locators.button import MainButton, Button
 from locators.text_field import MainTextField, TextField
+from locators.link import Link
 from methods.general_func import get_vendor_code
 
 
-class MainPage(BasePage, MainButton, Button, MainTextField, TextField):
+class MainPage(BasePage, MainButton, Button, MainTextField, TextField, Link):
     def __init__(self, driver):
         super().__init__(driver)
 
@@ -46,3 +47,15 @@ class MainPage(BasePage, MainButton, Button, MainTextField, TextField):
     @property
     def text_title_block(self):
         return tuple(map(lambda el: el.text, self.get_web_elements(self.title_block)))
+
+    @property
+    def tuple_popular_manufactures(self):
+        return tuple(map(lambda el: el.get_attribute('href'), self.get_web_elements(self.popular_manufactures)))
+
+    @property
+    def tuple_popular_models(self):
+        return tuple(map(lambda el: el.get_attribute('href'), self.get_web_elements(self.popular_models)))
+
+    @property
+    def tuple_popular_categories(self):
+        return tuple(map(lambda el: el.get_attribute('href'), self.get_web_elements(self.popular_categories)))

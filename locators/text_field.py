@@ -8,7 +8,7 @@ class TextField:
     base_brand = By.CSS_SELECTOR, '.catalogue-list .trademark span'
     base_vendor_code = By.CSS_SELECTOR, '.catalogue-list .trademark'
     base_delivery = By.CSS_SELECTOR, '.catalogue-list .delivery'
-
+    base_description = By.CSS_SELECTOR, 'meta[name = "description"]'
 
 
 class HeaderTextField:
@@ -16,6 +16,8 @@ class HeaderTextField:
     cart_header_price = By.CSS_SELECTOR, '.cart .lowerCase .user-menu-title span'
     mega_menu = By.CLASS_NAME, 'mega-menu-link'
     user_menu = By.CLASS_NAME, 'user-menu-toggler '
+    contact = By.CSS_SELECTOR, '.header-contact-nav a'
+    logo = By.CSS_SELECTOR, 'svg[name = "logo"] path'
 
 
 class FooterTextField:

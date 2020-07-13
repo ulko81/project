@@ -8,7 +8,8 @@ from pages.main import MainPage
 from pages.cart import CartPage
 from pages.full_search_product import FullSearchProductPage
 from pages.request_by_vin import RequestByVinPage
-from settings.project_setting import TEST_URL, project_page
+from settings.project_setting import TEST_URL
+from settings.project_page import project_page
 from methods.general_method import GeneralMethod
 
 

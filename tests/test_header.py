@@ -25,20 +25,35 @@ class TestHeader(GeneralMethod):
 
     }
 
-    type_menu = ('mega', 'user')
+    contact_elements = {
+        'RU': ('Форум', 'Оплата', 'Доставка', 'Возврат\nи гарантия', 'Помощь'),
+        'UA': ('Форум', 'Оплата', 'Доставка', 'Повернення\nта гарантія', 'Допомога'),
+        'EN': ('Forum', 'Payment', 'Delivery', 'Return\nand warranty', 'Help')
+    }
+
+    type_nav = (
+        'mega',
+        'user',
+        'contact')
 
     @pytest.mark.header
     @pytest.mark.parametrize('current_language', language)
-    @pytest.mark.parametrize('type_menu', type_menu)
-    def test_menu_element_name(self, current_language, type_menu):
+    @pytest.mark.parametrize('type_nav', type_nav)
+    def test_menu_element_name(self, current_language, type_nav):
         self.driver.get(TEST_URL)
         menu = {
             'mega': (self.mega_menu_elements, HeaderPage(self.driver).text_mega_menu),
-            'user': (self.user_menu_elements, HeaderPage(self.driver).text_user_menu)
+            'user': (self.user_menu_elements, HeaderPage(self.driver).text_user_menu),
+            'contact': (self.contact_elements, HeaderPage(self.driver).text_contact)
         }
         self.change_language(self.driver, current_language)
-        expected_menu = menu.get(type_menu)[0].get(current_language)
-        actual_menu = menu.get(type_menu)[1]()
+        expected_menu = menu.get(type_nav)[0].get(current_language)
+        actual_menu = menu.get(type_nav)[1]()
+
         assert len(actual_menu) == len(expected_menu)
         for i in range(len(expected_menu)):
             assert actual_menu[i] == expected_menu[i]
+
+    @pytest.mark.header
+    def test_logo(self):
+        self.driver.get(TEST_URL)

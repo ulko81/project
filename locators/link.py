@@ -1,13 +1,7 @@
 from selenium.webdriver.common.by import By
 
-link = {
-    'phone_field': (By.ID, 'phone-field'),
-    'pass_field': (By.NAME, 'password')
-}
 
-header_link = {}
-footer_link = {}
-catalog_link = {}
-search_link = {}
-card_link = {}
-cart_link = {}
+class Link:
+    popular_manufactures = By.CSS_SELECTOR, '.popular-manufactures-container a'
+    popular_models = By.CSS_SELECTOR, '.popular-models-block a'
+    popular_categories = By.CSS_SELECTOR, '.popular-categories-container a'

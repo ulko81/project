@@ -1,4 +1,5 @@
 from helpers.dict_helper import *
+import random
 
 
 def change_format_date_cart(date):
@@ -19,3 +20,13 @@ def change_format_price(price):
 
 def get_vendor_code(trademark, trademark_with_vendor_code):
     return trademark_with_vendor_code.replace(trademark, '').strip()
+
+
+def get_random_elements(old_list, qnt):
+    new_list = []
+    if len(old_list) > qnt:
+        for i in range(qnt):
+            new_list.append(old_list[random.randint(0, len(old_list)-1)])
+        return new_list
+    return old_list
+

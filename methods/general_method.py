@@ -59,7 +59,3 @@ class GeneralMethod:
         except Exception:
             pass
         preloader.check_invisible_element(Icon.icon_preload)
-
-
-
-

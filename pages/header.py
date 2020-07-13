@@ -94,3 +94,6 @@ class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button
 
     def text_user_menu(self):
         return tuple(map(lambda el: el.text, self.get_web_elements(self.user_menu)))
+
+    def text_contact(self):
+        return tuple(map(lambda el: el.text, self.get_web_elements(self.contact)))
