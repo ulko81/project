@@ -2,7 +2,8 @@ import pytest
 from pages.header import HeaderPage
 from pages.checkout import CheckoutPage
 from pages.card import CardPage
-from settings.project_setting import TEST_URL, test_user, project_page
+from settings.project_setting import TEST_URL, test_user
+from settings.project_page import project_page
 from methods.general_method import GeneralMethod
 
 
