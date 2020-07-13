@@ -40,17 +40,17 @@ class SEOMethod:
         return description.get_web_element(TextField.base_description).get_attribute('content')
 
     @staticmethod
-    def get_links_from_popular_blocks():
+    def get_links_from_popular_blocks(url):
         pages_block = []
         popular_block = {
             'manufactures': Link.popular_manufactures,
             'models': Link.popular_models,
             'categories': Link.popular_categories
         }
-        page = requests.get(TEST_URL)
+        page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
         for block in popular_block.keys():
             links = list(map(lambda link: link.get('href'), soup.select(popular_block.get(block)[1])))
-            pages = list(map(lambda el: TEST_URL + el, get_random_elements(links, 5)))
+            pages = list(map(lambda el: url + el, get_random_elements(links, 5)))
             pages_block.extend(zip([block for __ in range(0, len(pages))], pages))
         return pages_block

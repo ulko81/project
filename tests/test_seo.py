@@ -28,8 +28,8 @@ class TestSEOSSR:
                                                                                                project_page.get(page))
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('el', SEOMethod.get_links_from_popular_blocks(), ids=['{} - {}'.format(block, page)
-                             for block, page in SEOMethod.get_links_from_popular_blocks()])
+    @pytest.mark.parametrize('el', SEOMethod.get_links_from_popular_blocks(TEST_URL), ids=['{} - {}'.format(block, page)
+                             for block, page in SEOMethod.get_links_from_popular_blocks(TEST_URL)])
     def test_popular_block(self, el):
         assert 200 == requests.get(el[1]).status_code
 
