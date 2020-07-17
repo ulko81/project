@@ -1,9 +1,8 @@
 from pages.base_page import BasePage
-from locators.text_field import SearchTextField, TextField
-from locators.button import SearchButton, Button
+from locators.search_locator import SearchLocator
 
 
-class SearchPage(BasePage, SearchTextField, TextField, SearchButton, Button):
+class SearchPage(BasePage, SearchLocator):
 
     def __init__(self, driver):
         super().__init__(driver)

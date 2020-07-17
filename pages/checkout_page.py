@@ -1,10 +1,8 @@
 from pages.base_page import BasePage
-from locators.text_field import TextField, CheckoutTextField
-from locators.input_field import InputField
-from locators.button import Button
+from locators.checkout_locator import CheckoutLocator
 
 
-class CheckoutPage(BasePage, InputField, Button, TextField, CheckoutTextField):
+class CheckoutPage(BasePage, CheckoutLocator):
 
     def __init__(self, driver):
         super().__init__(driver)

@@ -2,10 +2,9 @@ import requests
 from settings.project_setting import TEST_URL
 from settings.project_page import project_page
 from bs4 import BeautifulSoup
-from locators.text_field import TextField
 from pages.base_page import BasePage
+from locators.base_locator import BaseLocator
 from methods.general_func import get_random_elements
-from locators.link import Link
 
 
 class SEOMethod:
@@ -37,15 +36,15 @@ class SEOMethod:
     @staticmethod
     def seo_client_description(driver):
         description = BasePage(driver)
-        return description.get_web_element(TextField.base_description).get_attribute('content')
+        return description.get_web_element(BaseLocator.base_description).get_attribute('content')
 
     @staticmethod
     def get_links_from_popular_blocks(url):
         pages_block = []
         popular_block = {
-            'manufactures': Link.popular_manufactures,
-            'models': Link.popular_models,
-            'categories': Link.popular_categories
+            'manufactures': BaseLocator.popular_manufactures,
+            'models': BaseLocator.popular_models,
+            'categories': BaseLocator.popular_categories
         }
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')

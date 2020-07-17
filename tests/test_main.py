@@ -1,5 +1,5 @@
 import pytest
-from pages.main import MainPage
+from pages.main_page import MainPage
 from settings.project_setting import TEST_URL, language
 from methods.general_method import GeneralMethod
 

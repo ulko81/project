@@ -1,0 +1,26 @@
+from selenium.webdriver.common.by import By
+
+
+class BaseLocator:
+    button_blue = By.CLASS_NAME, 'btn-blue'
+    button_green = By.CLASS_NAME, 'btn-green'
+    button_white = By.CLASS_NAME, 'btn-white'
+    button_darkblue = By.CLASS_NAME, 'btn-darkblue'
+    module_button_cart_order = By.CSS_SELECTOR, 'a[href = "/checkout/"]'
+    module_button_to_cart = By.CSS_SELECTOR, '.buttons a[href = "/cart/"]'
+    icon_preload = By.CSS_SELECTOR, '.preloader.visible'
+    phone_field = By.ID, 'phone-field'
+    pass_field = By.NAME, 'password'
+    popular_manufactures = By.CSS_SELECTOR, '.popular-manufactures-container a'
+    popular_models = By.CSS_SELECTOR, '.popular-models-block a'
+    popular_categories = By.CSS_SELECTOR, '.popular-categories-container a'
+    module_language_select = By.CSS_SELECTOR, '.lang-select button'
+    base_h1 = By.TAG_NAME, 'h1'
+    base_price = By.CSS_SELECTOR, '.catalogue-list .price'
+    base_name = By.CSS_SELECTOR, '.catalogue-list strong'
+    base_brand = By.CSS_SELECTOR, '.catalogue-list .trademark span'
+    base_vendor_code = By.CSS_SELECTOR, '.catalogue-list .trademark'
+    base_delivery = By.CSS_SELECTOR, '.catalogue-list .delivery'
+    base_description = By.CSS_SELECTOR, 'meta[name = "description"]'
+    you_watched_button_blue = By.CSS_SELECTOR, '.info-block-wrapper .btn-blue'
+    you_watched_button_green = By.CSS_SELECTOR, '.info-block-wrapper .btn-green'

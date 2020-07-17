@@ -33,6 +33,11 @@ class TestSEOSSR:
     def test_popular_block(self, el):
         assert 200 == requests.get(el[1]).status_code
 
+    @pytest.mark.seo
+    def test_pagination_prev_next(self):
+        pass
+        #print(SEOMethod.get_pagination_link(TEST_URL + project_page.get('pagination')))
+
 
 @pytest.mark.usefixtures('get_driver')
 class TestSEOCSR:

@@ -1,11 +1,9 @@
 from pages.base_page import BasePage
-from locators.button import MainButton, Button
-from locators.text_field import MainTextField, TextField
-from locators.link import Link
 from methods.general_func import get_vendor_code
+from locators.main_locator import MainLocator
 
 
-class MainPage(BasePage, MainButton, Button, MainTextField, TextField, Link):
+class MainPage(BasePage, MainLocator):
     def __init__(self, driver):
         super().__init__(driver)
 

@@ -1,10 +1,9 @@
 from pages.base_page import BasePage
 from methods.general_func import change_format_date_cart, get_vendor_code
-from locators.text_field import TextField, CartTextField
-from locators.button import CartButton, Button
+from locators.cart_locator import CartLocator
 
 
-class CartPage(BasePage, TextField, CartTextField, CartButton, Button):
+class CartPage(BasePage, CartLocator):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -64,7 +63,3 @@ class CartPage(BasePage, TextField, CartTextField, CartButton, Button):
         return {self.text_first_recommended_name, self.text_first_recommended_brand,
                 self.text_first_recommended_vendor_code, self.text_first_recommended_delivery,
                 self.text_first_recommended_price}
-
-
-
-

@@ -1,13 +1,13 @@
 import pytest
 import random
-from pages.header import HeaderPage
-from pages.card import CardPage
-from pages.search import SearchPage
-from pages.catalog import CatalogPage
-from pages.main import MainPage
-from pages.cart import CartPage
-from pages.full_search_product import FullSearchProductPage
-from pages.request_by_vin import RequestByVinPage
+from pages.header_page import HeaderPage
+from pages.card_page import CardPage
+from pages.search_page import SearchPage
+from pages.catalog_page import CatalogPage
+from pages.main_page import MainPage
+from pages.cart_page import CartPage
+from pages.full_search_product_page import FullSearchProductPage
+from pages.request_by_vin_page import RequestByVinPage
 from settings.project_setting import TEST_URL
 from settings.project_page import project_page
 from methods.general_method import GeneralMethod
@@ -152,7 +152,7 @@ class TestCart(GeneralMethod):
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         catalog = CatalogPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('catalog'))
+        self.driver.get(TEST_URL + project_page.get('category'))
         page_info = catalog.set_product_info()
         catalog.click_first_buy_button()
         catalog.click_first_in_cart_button()

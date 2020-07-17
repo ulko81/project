@@ -1,8 +1,8 @@
 import os
-from pages.header import HeaderPage
-from pages.checkout import CheckoutPage
-from locators.icon import Icon
+from pages.header_page import HeaderPage
+from pages.checkout_page import CheckoutPage
 from pages.base_page import BasePage
+from locators.base_locator import BaseLocator
 
 
 class GeneralMethod:
@@ -55,7 +55,7 @@ class GeneralMethod:
         timeout = 10
         preloader = BasePage(driver, timeout)
         try:
-            preloader.get_visible_element(Icon.icon_preload)
+            preloader.get_visible_element(BaseLocator.icon_preload)
         except Exception:
             pass
-        preloader.check_invisible_element(Icon.icon_preload)
+        preloader.check_invisible_element(BaseLocator.icon_preload)

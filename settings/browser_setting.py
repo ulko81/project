@@ -22,14 +22,12 @@ class Browser:
         else:
             return os.path.join(self.drivers_dir['windows'], self.driver_name[self.get_browser])
 
-
     def set_chrome(self, width=1920, height=1080, page_load_strategy='normal'):
         chrome_options = Chrome()
         capabilities = DesiredCapabilities.CHROME
         capabilities["pageLoadStrategy"] = page_load_strategy
         chrome_options.add_argument('--window-size={width_},{height_}'.format(width_=width, height_=height))
         chrome_options.add_argument('--no-sandbox')
-        #if os.environ.get('CI'): chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
         return webdriver.Chrome(options=chrome_options, desired_capabilities=capabilities,
                                 executable_path=self.get_driver_path())

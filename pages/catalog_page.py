@@ -1,10 +1,9 @@
 from pages.base_page import BasePage
-from locators.button import CatalogButton, Button
-from locators.text_field import CatalogTextField, TextField
 from methods.general_func import change_format_price, get_vendor_code
+from locators.catalog_locator import CatalogLocator
 
 
-class CatalogPage(BasePage, CatalogButton, Button, CatalogTextField, TextField):
+class CatalogPage(BasePage, CatalogLocator):
 
     def __init__(self, driver):
         super().__init__(driver)

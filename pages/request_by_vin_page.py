@@ -1,8 +1,8 @@
 from pages.base_page import BasePage
-from locators.button import Button
+from locators.request_by_vin_locator import RequestByVinLocator
 
 
-class RequestByVinPage(BasePage, Button):
+class RequestByVinPage(BasePage, RequestByVinLocator):
 
     def __init__(self, driver):
         super().__init__(driver)

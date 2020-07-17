@@ -1,14 +1,9 @@
 from pages.base_page import BasePage
-from locators.text_field import HeaderTextField, TextField, ModuleTextField
-from locators.input_field import ModuleInputField, InputField
-from locators.button import Button, HeaderButton, ModuleButton
-from locators.select import Select, ModuleSelect, HeaderSelect
-
 from methods.general_func import change_format_date_cart
+from locators.header_locator import HeaderLocator
 
 
-class HeaderPage(BasePage, HeaderTextField, ModuleInputField, InputField, Button, HeaderButton, ModuleButton, TextField,
-                 ModuleTextField, Select, ModuleSelect, HeaderSelect):
+class HeaderPage(BasePage, HeaderLocator):
 
     def __init__(self, driver):
         super().__init__(driver)

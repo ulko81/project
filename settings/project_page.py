@@ -33,7 +33,8 @@ project_page = {
     'two_filters_in_diff_blocks': '/akkumuljatornye-batarei/trademark=4max;serija=starting-battery/',
     'one_filters_absent_in_dashboard': '/datchiki-abs/is_oe=true/',
     'with_get_params': '/?data=value',
-    'not_default_lang': '/en/zapchasti-dlia-to/'
+    'not_default_lang': '/en/zapchasti-dlia-to/',
+
 }
 
 seo_page_closed = ('two_filters', 'two_filters_in_one_block', 'two_filters_in_diff_blocks',

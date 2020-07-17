@@ -1,5 +1,5 @@
 import pytest
-from pages.header import HeaderPage
+from pages.header_page import HeaderPage
 from settings.project_setting import TEST_URL, language
 from methods.general_method import GeneralMethod
 

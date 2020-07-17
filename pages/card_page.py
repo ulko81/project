@@ -1,9 +1,8 @@
 from pages.base_page import BasePage
-from locators.button import CardButton, Button
-from locators.text_field import CardTextField, TextField
+from locators.card_locator import CardLocator
 
 
-class CardPage(BasePage, CardButton, Button, CardTextField, TextField):
+class CardPage(BasePage, CardLocator):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -68,7 +67,6 @@ class CardPage(BasePage, CardButton, Button, CardTextField, TextField):
 
     def text_first_offers_delivery(self, order):
         return self.get_web_elements(self.card_first_offer_delivery)[order].text.lower()
-
 
     def set_product_info(self):
         return {self.text_name, self.text_brand, self.text_vendor_code, self.text_delivery, self.text_price}
