@@ -16,6 +16,8 @@ class BaseLocator:
     popular_categories = By.CSS_SELECTOR, '.popular-categories-container a'
     module_language_select = By.CSS_SELECTOR, '.lang-select button'
     base_h1 = By.TAG_NAME, 'h1'
+    cars_block_title = By.CSS_SELECTOR, '.car-descendants-wrapper h2'
+    cars_block = By.CSS_SELECTOR, '.car-descendants-wrapper a'
     base_price = By.CSS_SELECTOR, '.catalogue-list .price'
     base_name = By.CSS_SELECTOR, '.catalogue-list strong'
     base_brand = By.CSS_SELECTOR, '.catalogue-list .trademark span'

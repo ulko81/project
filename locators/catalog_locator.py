@@ -3,4 +3,4 @@ from locators.base_locator import BaseLocator
 
 
 class CatalogLocator(BaseLocator):
-    pass
+    seo_our_cities = By.CSS_SELECTOR, 'div[class = "container text-container"]'

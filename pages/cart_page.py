@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from methods.general_func import change_format_date_cart, get_vendor_code
+from methods.general_method import GeneralMethod
 from locators.cart_locator import CartLocator
 
 
@@ -45,12 +45,12 @@ class CartPage(BasePage, CartLocator):
 
     @property
     def text_first_recommended_vendor_code(self):
-        return get_vendor_code(self.get_web_elements(self.cart_recommended_brand)[0].text,
+        return GeneralMethod.get_vendor_code(self.get_web_elements(self.cart_recommended_brand)[0].text,
                                self.get_web_elements(self.cart_recommended_vendor_code)[0].text)
 
     @property
     def text_delivery(self):
-        return change_format_date_cart(self.get_web_element(self.cart_delivery_date).text).lower()
+        return GeneralMethod.change_format_date_cart(self.get_web_element(self.cart_delivery_date).text).lower()
 
     @property
     def text_first_recommended_delivery(self):

@@ -20,7 +20,7 @@ class TestCart(GeneralMethod):
     def test_cart_in_header_add_from_card(self):
         header_cart = HeaderPage(self.driver)
         card = CardPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         card.click_button_buy()
         assert card.check_present_button_in_cart
         assert '1' == header_cart.text_digit_cart_header
@@ -31,7 +31,7 @@ class TestCart(GeneralMethod):
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         card = CardPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         page_info = card.set_product_info()
         card.click_button_buy()
         card.click_to_cart_button()
@@ -47,7 +47,7 @@ class TestCart(GeneralMethod):
     def test_cart_in_header_add_from_card_offers(self):
         header_cart = HeaderPage(self.driver)
         card = CardPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         prices = card.list_text_first_offers_price
         for i, buy_button in enumerate(card.get_first_offers_buy_button):
             buy_button.click()
@@ -62,7 +62,7 @@ class TestCart(GeneralMethod):
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         card = CardPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         page_info = card.set_product_info_offers(count)
         card.get_first_offers_buy_button[count].click()
         card.click_offer_in_cart_button()
@@ -168,7 +168,7 @@ class TestCart(GeneralMethod):
     def test_cart_in_header_add_from_you_watched(self):
         header_cart = HeaderPage(self.driver)
         main = MainPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         self.driver.get(TEST_URL)
         main.click_first_buy_button_you_watched()
         assert main.check_button_in_cart_you_watched
@@ -180,7 +180,7 @@ class TestCart(GeneralMethod):
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         main = MainPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         self.driver.get(TEST_URL)
         page_info = main.set_you_watched_product_info()
         main.click_first_buy_button_you_watched()

@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from methods.general_func import get_vendor_code
+from methods.general_method import GeneralMethod
 from locators.main_locator import MainLocator
 
 
@@ -31,8 +31,8 @@ class MainPage(BasePage, MainLocator):
 
     @property
     def text_first_vendor_code(self):
-        return get_vendor_code(self.get_web_elements(self.brand)[0].text,
-                               self.get_web_elements(self.vendor_code)[0].text)
+        return GeneralMethod.get_vendor_code(self.get_web_elements(self.brand)[0].text,
+                                             self.get_web_elements(self.vendor_code)[0].text)
 
     @property
     def text_first_delivery(self):
@@ -57,3 +57,15 @@ class MainPage(BasePage, MainLocator):
     @property
     def tuple_popular_categories(self):
         return tuple(map(lambda el: el.get_attribute('href'), self.get_web_elements(self.popular_categories)))
+
+    @property
+    def text_seo_after_autogid(self):
+        return self.get_web_element(self.seo_text).text
+
+    @property
+    def get_guide_tabs(self):
+        return self.get_web_elements(self.guide_tabs)
+
+    @property
+    def text_guide_tab_selected(self):
+        return self.get_web_element(self.guide_tab_selected).text

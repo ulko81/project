@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from methods.general_func import change_format_date_cart
+from methods.cart_method import CartMethod
 from locators.header_locator import HeaderLocator
 
 
@@ -58,7 +58,7 @@ class HeaderPage(BasePage, HeaderLocator):
 
     @property
     def text_delivery(self):
-        return change_format_date_cart(self.get_web_element(self.module_product_delivery).text).lower()
+        return CartMethod.change_format_date_cart(self.get_web_element(self.module_product_delivery).text).lower()
 
     def set_product_info(self):
         return {self.text_price, self.text_name, self.text_brand, self.text_vendor_code, self.text_delivery}

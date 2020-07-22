@@ -3,6 +3,8 @@ from pages.header_page import HeaderPage
 from pages.checkout_page import CheckoutPage
 from pages.base_page import BasePage
 from locators.base_locator import BaseLocator
+from helpers.dict_helper import *
+import random
 
 
 class GeneralMethod:
@@ -59,3 +61,28 @@ class GeneralMethod:
         except Exception:
             pass
         preloader.check_invisible_element(BaseLocator.icon_preload)
+
+    @staticmethod
+    def change_format_price(price):
+        if language_cur.get('ru') in price:
+            count = price.find(language_cur.get('ru')) + 3
+            price = price[:count]
+            return price
+
+    @staticmethod
+    def get_vendor_code(trademark, trademark_with_vendor_code):
+        return trademark_with_vendor_code.replace(trademark, '').strip()
+
+    @staticmethod
+    def get_random_elements(old_list, qnt):
+        new_list = []
+        if len(old_list) > qnt:
+            for i in range(qnt):
+                new_list.append(old_list[random.randint(0, len(old_list) - 1)])
+            return new_list
+        return old_list
+
+    @staticmethod
+    def change_symbols(string, old_symbols, new_symbols):
+        return string.replace(old_symbols, new_symbols)
+

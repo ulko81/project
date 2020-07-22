@@ -1,10 +1,13 @@
 project_page = {
-    'product_card': '/mahle-knecht-brand/filtr-masljanyj-oc-90-14305477/',
+    'main': '',
+    'product_card_with_offers': '/mahle-knecht-brand/filtr-masljanyj-oc-90-14305477/',
+    'product_card_without_offers': '/triclo-brand/stupica-kolesa-904304-27692508/',
     'search': '/search/?query=oc90',
     'category': '/filtry-vozdushnye/',
     'section': '/kuzovnye-zapchasti/',
-    'group': '/dnische-kuzova-rama-avtomobilja/',
+    'group': '/masla/',
     'full-search-product': '/search-result-products/?query=mazda',
+    'full-search-category': '/search-result-categories/?query=mazda&manufacture_slug=mazda&model_slug=',
     'cart': '/cart/',
     'request_by_vin': '/request-by-vin/480204/',
     'sitemap': '/sitemap.xml',
@@ -38,10 +41,11 @@ project_page = {
 }
 
 seo_page_closed = ('two_filters', 'two_filters_in_one_block', 'two_filters_in_diff_blocks',
-                   'one_filters_absent_in_dashboard', 'pagination', 'with_get_params', 'not_default_lang'
+                   'one_filters_absent_in_dashboard', 'pagination', 'with_get_params', 'not_default_lang',
+                   'full-search-product', 'full-search-category'
                    )
 
-seo_page_title = ('product_card', 'search', 'category', 'section', 'group', 'full-search-product', 'brand',
+seo_page_title = ('product_card_with_offers', 'search', 'category', 'section', 'group', 'full-search-product', 'brand',
                   'cars_catalog', 'spare_for_car', 'spare_for_car_model', 'catalog_with_car', 'catalog_with_car_model',
                   'catalog_with_brand', 'catalog_with_car_type_model', 'catalog_with_filter'
                   )
@@ -49,5 +53,5 @@ seo_page_title = ('product_card', 'search', 'category', 'section', 'group', 'ful
 page_200 = ('registration', 'payment', 'balance', 'notepad', 'brand', 'checkout', 'settings', 'orders', 'promotions',
             'help', 'cars_catalog', 'spare_for_car', 'spare_for_car_model', 'catalog_with_car',
             'catalog_with_car_model', 'catalog_with_brand', 'catalog_with_car_type_model', 'catalog_with_filter',
-            'pagination'
+            'pagination', 'product_card_with_offers'
             )

@@ -22,7 +22,7 @@ class TestAuthorization(GeneralMethod):
         header = HeaderPage(self.driver)
         card = CardPage(self.driver)
         checkout = CheckoutPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('product_card'))
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         card.click_button_buy()
         assert header.text_digit_cart_header
         header.click_cart_in_header()
