@@ -5,6 +5,7 @@ from locators.base_locator import BaseLocator
 class CardLocator(BaseLocator):
     card_button_blue = By.CSS_SELECTOR, '.list-item-btns .btn-blue'
     card_button_green = By.CSS_SELECTOR, '.list-item-btns .btn-green'
+    first_offers = By.CSS_SELECTOR, '.grid-table tr[class = "     "]:nth-child(1)'
     card_first_offer_button_blue = By.CSS_SELECTOR, '.grid-table tr[class = "     "]:nth-child(1) .btn-blue'
     card_first_offer_button_green = By.CSS_SELECTOR, '.grid-table tr[class = "     "]:nth-child(1) .btn-green'
     card_price = By.CSS_SELECTOR, '.product-short-info .price'
@@ -18,3 +19,4 @@ class CardLocator(BaseLocator):
     card_first_offer_delivery = By.CSS_SELECTOR, '.grid-table tr[class = "     "]:nth-child(1) .delivery'
     card_first_offer_delivery_date = By.CSS_SELECTOR, '.grid-table tr[class = "     "]:nth-child(1) .delivery .bold'
     card_first_offer_delivery_time = By.CSS_SELECTOR, '.grid-table tr[class = "     "]:nth-child(1) .delivery-time'
+    card_product_attributes_values = By.CSS_SELECTOR, '.product-attributes a'

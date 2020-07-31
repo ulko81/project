@@ -75,3 +75,14 @@ class CardPage(BasePage, CardLocator):
         return {self.text_first_offers_name(order), self.text_first_offers_brand(order),
                 self.text_first_offers_vendor_code(order), self.text_first_offers_delivery(order),
                 self.text_first_offers_price(order)}
+
+    @property
+    def get_link_first_attribute_value(self):
+        return self.get_web_elements(self.card_product_attributes_values)[0].get_attribute('href')
+
+    def click_first_attribute_value(self):
+        self.get_web_elements(self.card_product_attributes_values)[0].click()
+
+    @property
+    def amount_first_offers(self):
+        return self.amount_of_elements(self.first_offers)

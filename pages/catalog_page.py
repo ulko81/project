@@ -49,3 +49,7 @@ class CatalogPage(BasePage, CatalogLocator):
 
     def click_popular_manufactures(self, manufactura):
         self.get_elements_with_text(manufactura).click()
+
+    @property
+    def text_title_all_type_models(self):
+        return self.get_web_element(self.cars_block_title).text

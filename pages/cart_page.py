@@ -1,4 +1,5 @@
 from pages.base_page import BasePage
+from methods.cart_method import CartMethod
 from methods.general_method import GeneralMethod
 from locators.cart_locator import CartLocator
 
@@ -50,7 +51,7 @@ class CartPage(BasePage, CartLocator):
 
     @property
     def text_delivery(self):
-        return GeneralMethod.change_format_date_cart(self.get_web_element(self.cart_delivery_date).text).lower()
+        return CartMethod.change_format_date_cart(self.get_web_element(self.cart_delivery_date).text).lower()
 
     @property
     def text_first_recommended_delivery(self):

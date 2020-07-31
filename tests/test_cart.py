@@ -52,7 +52,7 @@ class TestCart(GeneralMethod):
         for i, buy_button in enumerate(card.get_first_offers_buy_button):
             buy_button.click()
             assert header_cart.check_text_digit_cart_header(str(i+1))
-        assert 2 == card.amount_offers_button_in_cart
+        assert card.amount_first_offers == card.amount_offers_button_in_cart
         format_price_for_header_cart = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-4:]
         assert format_price_for_header_cart == header_cart.text_cart_price
 
@@ -141,7 +141,7 @@ class TestCart(GeneralMethod):
     def test_cart_in_header_add_from_catalog(self):
         header_cart = HeaderPage(self.driver)
         catalog = CatalogPage(self.driver)
-        self.driver.get(TEST_URL + project_page.get('catalog'))
+        self.driver.get(TEST_URL + project_page.get('category'))
         catalog.click_first_buy_button()
         assert catalog.check_present_button_in_cart
         assert '1' == header_cart.text_digit_cart_header

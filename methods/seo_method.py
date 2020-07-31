@@ -14,7 +14,6 @@ class SEOMethod:
     def get_sitemap_links():
         page = requests.get(TEST_URL + project_page.get('sitemap'))
         soup = BeautifulSoup(page.content, 'html.parser')
-        #return list(map(lambda el: str(el)[5:].replace('</loc>', ''), soup.find_all('loc')))
         return list(map(lambda loc: loc.text, soup.find_all('loc')))
 
     @staticmethod
@@ -85,3 +84,7 @@ class SEOMethod:
         for script in scripts:
            if types == json.loads("".join(script.contents)).get('@type'):
                return json.loads("".join(script.contents))
+
+    def get_microdata_breadcrumbs(self, url):
+        return list(map(lambda el: el.get('item').get('name'),
+                        self.get_microdata_type(url, 'BreadcrumbList').get('itemListElement')))

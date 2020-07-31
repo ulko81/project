@@ -53,7 +53,3 @@ class TestHeader(GeneralMethod):
         assert len(actual_menu) == len(expected_menu)
         for i in range(len(expected_menu)):
             assert actual_menu[i] == expected_menu[i]
-
-    @pytest.mark.header
-    def test_logo(self):
-        self.driver.get(TEST_URL)

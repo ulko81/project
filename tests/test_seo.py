@@ -2,16 +2,17 @@ import pytest
 import requests
 from deepdiff import DeepDiff
 from methods.seo_method import SEOMethod
-from settings.project_setting import TEST_URL, language, test_car
+from methods.general_method import GeneralMethod
+from settings.project_setting import TEST_URL, language, test_car, language_to_url
 from settings.project_page import *
 from pages.main_page import MainPage
 from pages.catalog_page import CatalogPage
-from pages.group_page import GroupPage
-from methods.general_method import GeneralMethod
+from pages.card_page import CardPage
+from pages.seo_page import SeoPage
 from helpers.seo_text import *
 
 
-class TestSEOSSR:
+class TestSEOSSR(SEOMethod, GeneralMethod):
 
     @pytest.mark.seo
     @pytest.mark.parametrize('link', SEOMethod.get_sitemap_links(),
@@ -20,21 +21,28 @@ class TestSEOSSR:
         assert 200 == requests.get(link).status_code
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', page_200, ids=['{}{}'.format(TEST_URL, project_page.get(page))
+    @pytest.mark.parametrize('page', page_200, ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
                                                     for page in page_200])
     def test_page_status_200(self, page):
         link = TEST_URL + project_page.get(page)
         assert 200 == requests.get(link).status_code
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', seo_page_closed, ids=['{}{}'.format(TEST_URL, project_page.get(page))
-                                                           for page in seo_page_closed])
-    def test_closed_page(self, page):
+    @pytest.mark.parametrize('page', seo_page_noindex_follow, ids=['{}: {}'
+                             .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_follow])
+    def test_closed_page_follow(self, page):
         assert '<meta content="noindex, follow" name="robots"/>' == SEOMethod.text_attr_robots(TEST_URL +
                                                                                                project_page.get(page))
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('el', SEOMethod.get_links_from_popular_blocks(TEST_URL), ids=['{} - {}'.format(block, page)
+    @pytest.mark.parametrize('page', seo_page_noindex_nofollow, ids=['{}: {}'
+                             .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_nofollow])
+    def test_closed_page_nofollow(self, page):
+        assert '<meta content="noindex, nofollow" name="robots"/>' == SEOMethod.text_attr_robots(TEST_URL +
+                                                                                                 project_page.get(page))
+
+    @pytest.mark.seo
+    @pytest.mark.parametrize('el', SEOMethod.get_links_from_popular_blocks(TEST_URL), ids=['{}: {}'.format(block, page)
                              for block, page in SEOMethod.get_links_from_popular_blocks(TEST_URL)])
     def test_popular_block(self, el):
         assert 200 == requests.get(el[1]).status_code
@@ -43,24 +51,39 @@ class TestSEOSSR:
     def test__pagination_link_attrs_rel_prev_next(self):
         assert {'prev', 'next'} == SEOMethod.get_attrs_rel_prev_next(TEST_URL + project_page.get('pagination'))
 
-
     @pytest.mark.parametrize('page, types', microdata_types.items(),
-                             ids=['{}' .format(TEST_URL + project_page.get(page))for page in microdata_types.keys()])
+                             ids=['{}: {}' .format(page, TEST_URL + project_page.get(page))
+                                  for page in microdata_types.keys()])
     @pytest.mark.seo
     def test_microdata(self, page, types):
-        assert SEOMethod.get_microdata_types(TEST_URL + project_page.get(page)) == types
-        assert SEOMethod.get_microdata_type(TEST_URL + project_page.get(page), 'Organization') \
+        assert self.get_microdata_types(TEST_URL + project_page.get(page)) == types
+        assert self.get_microdata_type(TEST_URL + project_page.get(page), 'Organization') \
                == microdata_organization.get(TEST_URL)
-        assert SEOMethod.get_microdata_type(TEST_URL + project_page.get(page), 'WebSite') \
+        assert self.get_microdata_type(TEST_URL + project_page.get(page), 'WebSite') \
                == microdata_website.get(TEST_URL)
         if page == 'product_card_with_offers':
-            diff = DeepDiff(SEOMethod.get_microdata_type(TEST_URL + project_page.get(page), 'Product'),
+            diff = DeepDiff(self.get_microdata_type(TEST_URL + project_page.get(page), 'Product'),
                             microdata_product, view='tree')
             assert None == diff.to_dict().get('dictionary_item_removed')
 
+    @pytest.mark.parametrize('current_language', language)
+    @pytest.mark.parametrize('page, breadcrumbs_microdata', breadcrumbs.items(),
+                             ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
+                                  for page in breadcrumbs.keys()])
+    @pytest.mark.seo
+    def test_microdata_breadcrumbs(self, page, breadcrumbs_microdata, current_language):
+        if page != 'laxima_spare':
+            expected_breadcrumbs = breadcrumbs_microdata.get(current_language)
+            actual_microdata_breadcrumbs = self.get_microdata_breadcrumbs(TEST_URL +
+                                                                         language_to_url.get(current_language)
+                                                                          + project_page.get(page))
+            assert len(actual_microdata_breadcrumbs) == len(expected_breadcrumbs)
+            for el in range(len(actual_microdata_breadcrumbs)):
+                assert actual_microdata_breadcrumbs[el] == expected_breadcrumbs[el]
+
 
 @pytest.mark.usefixtures('get_driver')
-class TestSEOCSR(GeneralMethod):
+class TestSEOCSR(SEOMethod, GeneralMethod):
 
     @pytest.mark.seo
     def test_404(self):
@@ -69,13 +92,13 @@ class TestSEOCSR(GeneralMethod):
         assert TEST_URL + project_page.get('404') == self.driver.current_url
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', seo_page_title, ids=['{}{}'.format(TEST_URL, project_page.get(page))
+    @pytest.mark.parametrize('page', seo_page_title, ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
                                                           for page in seo_page_title])
     def test_title_ssr_vs_csr(self, page):
         self.driver.get(TEST_URL + project_page.get(page))
         assert self.driver.title == SEOMethod.text_title(TEST_URL + project_page.get(page))
         assert SEOMethod.seo_client_description(self.driver) == SEOMethod.text_description(TEST_URL
-                                                                                               + project_page.get(page))
+                                                                                           + project_page.get(page))
 
     @pytest.mark.seo
     def test_seo_text_after_autogid(self):
@@ -92,7 +115,6 @@ class TestSEOCSR(GeneralMethod):
         assert self.change_symbols(seo_category_page.text_seo_our_cities, '\n', '') == \
                self.change_symbols(seo_text_our_cities.get(current_language), '\n ', '')
 
-
     @pytest.mark.seo
     def test_avtogid_selection_tabs(self):
         autogid = MainPage(self.driver)
@@ -107,7 +129,7 @@ class TestSEOCSR(GeneralMethod):
     @pytest.mark.seo
     @pytest.mark.parametrize('current_language', language)
     def test_redirect_car_data(self, current_language):
-        seo = GroupPage(self.driver)
+        seo = SeoPage(self.driver)
         self.driver.get(TEST_URL + project_page.get('group'))
         self.change_language(self.driver, current_language)
         seo.click_popular_manafacture(test_car.get('manufacture'))
@@ -119,8 +141,66 @@ class TestSEOCSR(GeneralMethod):
         assert seo.text_title_all_type_models == all_type_models.get(current_language)
         assert seo.text_title_h1.strip() == h1_group_on_model.get(current_language)
 
+    @pytest.mark.seo
+    def test_cart_attribute_redirect(self):
+        card = CardPage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
+        link = card.get_link_first_attribute_value
+        card.click_first_attribute_value()
+        assert self.driver.current_url == link
 
+    @pytest.mark.seo
+    @pytest.mark.parametrize('current_language', language)
+    def test_category_block_all_type_model(self, current_language):
+        catalog = CatalogPage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('catalog_with_car_model'))
+        self.change_language(self.driver, current_language)
+        assert catalog.text_title_all_type_models == all_type_models.get(current_language)
 
+    @pytest.mark.seo
+    def test_refresh_catalog_page(self):
+        self.driver.get(TEST_URL + project_page.get('catalog_with_filter'))
+        self.driver.refresh()
+        assert self.driver.title != '404 Страница, которую вы искали, не найдена'
+        assert TEST_URL + project_page.get('404') != self.driver.current_url
 
+    @pytest.mark.parametrize('current_language', language)
+    @pytest.mark.parametrize('page, breadcrumbs', breadcrumbs.items(),
+                             ids=['{}: {}' .format(page, TEST_URL + project_page.get(page))
+                                  for page in breadcrumbs.keys()])
+    @pytest.mark.seo
+    def test_breadscrumbs(self, page, breadcrumbs, current_language):
+        seo = SeoPage(self.driver)
+        self.driver.get(TEST_URL + project_page.get(page))
+        self.change_language(self.driver, current_language)
+        actual_breadcrumbs = seo.list_text_breadcrumbs[1:]
+        if page != 'product_card_with_offers':
+            last_el = seo.text_breadcrumbs_last_el
+            actual_breadcrumbs.append(last_el)
+        expected_breadcrumbs = breadcrumbs.get(current_language)
+        assert len(actual_breadcrumbs) == len(expected_breadcrumbs)
+        for el in range(len(actual_breadcrumbs)):
+            assert actual_breadcrumbs[el] == expected_breadcrumbs[el]
 
+    @pytest.mark.seo
+    def test_breadscrumbs_links(self):
+        pages = ('main', 'section', 'group', 'category', 'catalog_with_filter', 'catalog_with_filter_and_car',
+                 'catalog_with_filter_and_model')
+        seo = SeoPage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('catalog_with_filter_and_type_model'))
+        actual_links = seo.list_breadcrumbs_links
+        expected_links = tuple(map(lambda page: TEST_URL + project_page.get(page), pages))
+        assert len(actual_links) == len(expected_links)
+        assert len(actual_links) == seo.amount_breadcrumbs_devider
+        for el in range(len(actual_links)):
+            assert actual_links[el] == expected_links[el]
 
+    @pytest.mark.parametrize('current_language', language)
+    @pytest.mark.seo
+    def test_card_h1(self, current_language):
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
+        self.change_language(self.driver, current_language)
+        seo = SeoPage(self.driver)
+        h1 = seo.text_title_h1
+        assert seo_card_h1.get('upc_with_brand') in h1
+        assert seo_card_h1.get('ware_just_num') in h1

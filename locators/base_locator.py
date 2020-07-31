@@ -26,3 +26,6 @@ class BaseLocator:
     base_description = By.CSS_SELECTOR, 'meta[name = "description"]'
     you_watched_button_blue = By.CSS_SELECTOR, '.info-block-wrapper .btn-blue'
     you_watched_button_green = By.CSS_SELECTOR, '.info-block-wrapper .btn-green'
+    breadcrumbs = By.CSS_SELECTOR, '.breadcrumbs a'
+    breadcrumbs_last_el = By.CLASS_NAME, 'breadcrumbs-current-path'
+    breadcrumbs_devider = By.CLASS_NAME, 'breadcrumbs-divider'
