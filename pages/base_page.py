@@ -1,4 +1,3 @@
-import time
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
@@ -6,16 +5,11 @@ import exception
 from selenium.webdriver.common.by import By
 
 
-
 class BasePage:
-    default_timeout = 30
-    default_delay = 1
 
-    def __init__(self, driver, timeout=None):
+    def __init__(self, driver, timeout=30):
         self.driver = driver
-        self.delay = self.default_delay
-        if timeout:
-            self.default_timeout = timeout
+        self.default_timeout = timeout
         self.wait = WebDriverWait(self.driver, self.default_timeout)
 
     def get_web_element(self, item):
@@ -70,9 +64,6 @@ class BasePage:
     def get_alert(self):
         return self.wait.until(expected_conditions.alert_is_present())
 
-    def delay_test(self, delay=None):
-        time.sleep(delay or self.delay)
-
     def text_present_in_element(self, item, text):
         try:
             element = self.wait.until(expected_conditions.text_to_be_present_in_element(item, text))
@@ -118,4 +109,3 @@ class BasePage:
             return element
         except TimeoutException as e:
             raise exception.ElementNotFoundException(item, e)
-

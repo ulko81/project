@@ -7,6 +7,7 @@ from pages.catalog_page import CatalogPage
 from pages.main_page import MainPage
 from pages.cart_page import CartPage
 from pages.full_search_product_page import FullSearchProductPage
+from pages.module_page import ModulePage
 from pages.request_by_vin_page import RequestByVinPage
 from settings.project_setting import TEST_URL
 from settings.project_page import project_page
@@ -16,6 +17,7 @@ from methods.general_method import GeneralMethod
 @pytest.mark.usefixtures('get_driver')
 class TestCart(GeneralMethod):
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_card(self):
         header_cart = HeaderPage(self.driver)
@@ -26,8 +28,10 @@ class TestCart(GeneralMethod):
         assert '1' == header_cart.text_digit_cart_header
         assert header_cart.text_cart_price in card.text_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_card(self):
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         card = CardPage(self.driver)
@@ -37,12 +41,13 @@ class TestCart(GeneralMethod):
         card.click_to_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_card_offers(self):
         header_cart = HeaderPage(self.driver)
@@ -56,9 +61,11 @@ class TestCart(GeneralMethod):
         format_price_for_header_cart = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-4:]
         assert format_price_for_header_cart == header_cart.text_cart_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_card_offers(self):
         count = random.randint(0, 1)
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         card = CardPage(self.driver)
@@ -68,12 +75,13 @@ class TestCart(GeneralMethod):
         card.click_offer_in_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_search_page_recommended(self):
         header_cart = HeaderPage(self.driver)
@@ -88,9 +96,11 @@ class TestCart(GeneralMethod):
         format_price = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-4:]
         assert format_price == header_cart.text_cart_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_search_recommended(self):
         count = random.randint(0, 2)
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         search = SearchPage(self.driver)
@@ -100,12 +110,13 @@ class TestCart(GeneralMethod):
         search.get_search_recommended_buttons_in_cart[0].click()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_search_page(self):
         header_cart = HeaderPage(self.driver)
@@ -119,9 +130,11 @@ class TestCart(GeneralMethod):
         format_price = str(sum(list(map(lambda el: int(el[:-3]), prices)))) + prices[0][-4:]
         assert format_price == header_cart.text_cart_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_search(self):
         count = random.randint(0, 2)
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         search = SearchPage(self.driver)
@@ -131,12 +144,13 @@ class TestCart(GeneralMethod):
         search.get_first_offers_in_cart_button[0].click()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_catalog(self):
         header_cart = HeaderPage(self.driver)
@@ -147,8 +161,10 @@ class TestCart(GeneralMethod):
         assert '1' == header_cart.text_digit_cart_header
         assert header_cart.text_cart_price in catalog.text_first_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_catalog(self):
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         catalog = CatalogPage(self.driver)
@@ -158,12 +174,13 @@ class TestCart(GeneralMethod):
         catalog.click_first_in_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_you_watched(self):
         header_cart = HeaderPage(self.driver)
@@ -175,8 +192,10 @@ class TestCart(GeneralMethod):
         assert '1' == header_cart.text_digit_cart_header
         assert header_cart.text_cart_price in main.text_first_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_you_watched(self):
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         main = MainPage(self.driver)
@@ -187,12 +206,13 @@ class TestCart(GeneralMethod):
         main.click_first_in_cart_button_you_watched()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_recommended_in_cart(self):
         header_cart = HeaderPage(self.driver)
@@ -203,8 +223,10 @@ class TestCart(GeneralMethod):
         assert '1' == header_cart.text_digit_cart_header
         assert header_cart.text_cart_price in cart.text_first_recommended_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_recommended_in_cart(self):
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         self.driver.get(TEST_URL + project_page.get('cart'))
@@ -212,12 +234,13 @@ class TestCart(GeneralMethod):
         cart.click_first_buy_button_recommended()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_full_search(self):
         header_cart = HeaderPage(self.driver)
@@ -228,8 +251,10 @@ class TestCart(GeneralMethod):
         assert '1' == header_cart.text_digit_cart_header
         assert header_cart.text_cart_price in full_search_product.text_first_price
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_comparison_info_cart_vs_full_search(self):
+        module_cart = ModulePage(self.driver)
         header_cart = HeaderPage(self.driver)
         cart = CartPage(self.driver)
         full_search_product = FullSearchProductPage(self.driver)
@@ -239,12 +264,13 @@ class TestCart(GeneralMethod):
         full_search_product.click_first_in_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
-        header_cart.click_cart_in_header()
-        assert header_cart.check_cart_module_info_loaded('грн')
-        cart_module_info = header_cart.set_product_info()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        cart_module_info = module_cart.set_product_info()
         assert page_info == cart_info
         assert page_info == cart_module_info
 
+    @pytest.mark.smoke
     @pytest.mark.cart
     def test_cart_in_header_add_from_vin_request(self):
         self.driver.get(TEST_URL)

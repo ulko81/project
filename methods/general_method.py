@@ -1,48 +1,13 @@
-import os
 from pages.header_page import HeaderPage
-from pages.checkout_page import CheckoutPage
 from pages.base_page import BasePage
 from locators.base_locator import BaseLocator
 from helpers.dict_helper import *
+from selenium.webdriver.common.keys import Keys
 import random
 
 
 class GeneralMethod:
 
-    @property
-    def get_username(self):
-        if os.environ.get('CI'):
-            return os.environ.get('USER_LOGIN')
-        else:
-            from settings.user_setting import user_login
-            return user_login
-
-    @property
-    def get_password(self):
-        if os.environ.get('CI'):
-            return os.environ.get('USER_PASS')
-        else:
-            from settings.user_setting import user_pass
-            return user_pass
-
-    def login(self, driver, login=None, password=None):
-        if not login:
-            login = self.get_username
-            password = self.get_password
-        header = HeaderPage(driver)
-        header.click_empty_profile()
-        header.fill_module_phone_field(login)
-        header.fill_module_pass_field(password)
-        header.click_module_enter()
-
-    def login_checkout(self, driver, login=None, password=None):
-        if not login:
-            login = self.get_username
-            password = self.get_password
-        checkout = CheckoutPage(driver)
-        checkout.fill_checkout_phone_field(login)
-        checkout.fill_checkout_pass_field(password)
-        checkout.click_checkout_enter()
 
     @staticmethod
     def change_language(driver, selected_language):
@@ -86,3 +51,7 @@ class GeneralMethod:
     def change_symbols(string, old_symbols, new_symbols):
         return string.replace(old_symbols, new_symbols)
 
+    @staticmethod
+    def clear_field(driver, locator):
+        field = BasePage(driver)
+        return field.get_web_element(locator).send_keys(Keys.CONTROL, 'a', Keys.BACKSPACE)

@@ -15,6 +15,7 @@ class Testmain(GeneralMethod):
                'POPULAR SPARE PARTS BRANDS', 'AUTO GUIDANCE VEHICLE USABILITY ASSISTANT')
     }
 
+    @pytest.mark.smoke
     @pytest.mark.main
     @pytest.mark.parametrize('current_language', language)
     def test_block_header_main_page(self, current_language):

@@ -22,3 +22,6 @@ class CheckoutPage(BasePage, CheckoutLocator):
 
     def check_load_checkout(self):
         self.get_web_element(self.delivery_tooltip)
+
+    def get_first_multi_users(self):
+        return self.get_first_visible_element(self.multi_user_block)

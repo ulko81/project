@@ -32,7 +32,7 @@ class Browser:
         return webdriver.Chrome(options=chrome_options, desired_capabilities=capabilities,
                                 executable_path=self.get_driver_path())
 
-    def set_firefox(self, width=1920, height=1080):
+    def set_firefox(self, width=920, height=1080):
         firefox_options = Firefox()
         caps = DesiredCapabilities.FIREFOX
         firefox_options.add_argument('--window-size={width_},{height_}'.format(width_=width, height_=height))

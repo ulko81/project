@@ -14,12 +14,14 @@ from helpers.seo_text import *
 
 class TestSEOSSR(SEOMethod, GeneralMethod):
 
+    @pytest.mark.smoke
     @pytest.mark.seo
     @pytest.mark.parametrize('link', SEOMethod.get_sitemap_links(),
                              ids=['sitemap_link {}'.format(link) for link in SEOMethod.get_sitemap_links()])
     def test_sitemap(self, link):
         assert 200 == requests.get(link).status_code
 
+    @pytest.mark.smoke
     @pytest.mark.seo
     @pytest.mark.parametrize('page', page_200, ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
                                                     for page in page_200])
@@ -27,6 +29,7 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
         link = TEST_URL + project_page.get(page)
         assert 200 == requests.get(link).status_code
 
+    @pytest.mark.smoke
     @pytest.mark.seo
     @pytest.mark.parametrize('page', seo_page_noindex_follow, ids=['{}: {}'
                              .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_follow])
@@ -34,6 +37,7 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
         assert '<meta content="noindex, follow" name="robots"/>' == SEOMethod.text_attr_robots(TEST_URL +
                                                                                                project_page.get(page))
 
+    @pytest.mark.smoke
     @pytest.mark.seo
     @pytest.mark.parametrize('page', seo_page_noindex_nofollow, ids=['{}: {}'
                              .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_nofollow])
@@ -54,11 +58,12 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
     @pytest.mark.parametrize('page, types', microdata_types.items(),
                              ids=['{}: {}' .format(page, TEST_URL + project_page.get(page))
                                   for page in microdata_types.keys()])
+    @pytest.mark.smoke
     @pytest.mark.seo
     def test_microdata(self, page, types):
         assert self.get_microdata_types(TEST_URL + project_page.get(page)) == types
         assert self.get_microdata_type(TEST_URL + project_page.get(page), 'Organization') \
-               == microdata_organization.get(TEST_URL)
+                                       == microdata_organization.get(TEST_URL)
         assert self.get_microdata_type(TEST_URL + project_page.get(page), 'WebSite') \
                == microdata_website.get(TEST_URL)
         if page == 'product_card_with_offers':
@@ -75,7 +80,7 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
         if page != 'laxima_spare':
             expected_breadcrumbs = breadcrumbs_microdata.get(current_language)
             actual_microdata_breadcrumbs = self.get_microdata_breadcrumbs(TEST_URL +
-                                                                         language_to_url.get(current_language)
+                                                                          language_to_url.get(current_language)
                                                                           + project_page.get(page))
             assert len(actual_microdata_breadcrumbs) == len(expected_breadcrumbs)
             for el in range(len(actual_microdata_breadcrumbs)):
