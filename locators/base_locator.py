@@ -28,3 +28,12 @@ class BaseLocator:
     breadcrumbs_last_el = By.CLASS_NAME, 'breadcrumbs-current-path'
     breadcrumbs_devider = By.CLASS_NAME, 'breadcrumbs-divider'
     btn_icon = By.CLASS_NAME, 'btn-icon'
+    button_car_controls_edit = By.CSS_SELECTOR, 'button[class="car-controls-edit"]'
+    car_vin_field = By.CSS_SELECTOR, 'input[aria-label = "carVIN"]'
+    car_year_field = By.CSS_SELECTOR, 'input[aria-label = "carYear"]'
+    car_name = By.CLASS_NAME, 'car-name'
+    button_ok_car_vin = By.CSS_SELECTOR, 'input[aria-label = "carVIN"]~button'
+    button_ok_car_year = By.CSS_SELECTOR, 'input[aria-label = "carYear"]~button'
+    button_car_delete = By.XPATH, '//*[@name="trash"]/../..'
+    button_car_confirm_delete = By.CSS_SELECTOR, '.garage-dd-content .btn-blue'
+

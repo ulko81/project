@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from locators.base_locator import BaseLocator
 
+
 class ModuleLocator(BaseLocator):
     button_language_select = By.CSS_SELECTOR, '.lang-select button'
     cart_button_cart_order = By.CSS_SELECTOR, 'a[href = "/checkout/"]'
@@ -26,13 +27,8 @@ class ModuleLocator(BaseLocator):
     list_car_type_models = By.CSS_SELECTOR, '.car-model-type-block button[name = "{}"]'
     list_car_modification = By.CSS_SELECTOR, '.car-modification-block tr[data-name = "{}"]'
     car_input_manufacture = By.CSS_SELECTOR, '.car-manufacture-block input'
-    my_car_chosen_car_button_ok_vin = By.CSS_SELECTOR, 'input[aria-label = "carVIN"]~button'
-    my_car_chosen_car_button_ok_year = By.CSS_SELECTOR, 'input[aria-label = "carYear"]~button'
     my_car_my_cars_vin = By.XPATH, '//div[@class = "garage-car-list"]//li/div[contains(text(), "VIN")]'
     my_car_chosen_car_vin = By.XPATH, '//div[@class = "chosen-car-info"]//div[contains(text(), "VIN")]'
-    my_car_chosen_car_button_edit = By.CSS_SELECTOR, 'button[class="car-controls-edit"]'
-    my_car_chosen_car_button_delete = By.CSS_SELECTOR, '.chosen-car button[aria-label="dropdown"]'
-    my_car_confirm_delete = By.CSS_SELECTOR, '.garage-dd-content .btn-blue'
-    my_car_chosen_car_field_vin = By.CSS_SELECTOR, 'input[aria-label = "carVIN"]'
-    my_car_chosen_car_field_year = By.CSS_SELECTOR, 'input[aria-label = "carYear"]'
     my_car_my_cars_button_go_to_garage = By.CSS_SELECTOR, '.garage-car-list a'
+
+

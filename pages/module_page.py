@@ -66,21 +66,21 @@ class ModulePage(BasePage, ModuleLocator):
         self.click(self.btn_icon)
 
     def click_edit_car(self):
-        self.click(self.my_car_chosen_car_button_edit)
+        self.click(self.button_car_controls_edit)
 
     def fill_vin_field(self, vin):
-        self.get_web_element(self.my_car_chosen_car_field_vin).send_keys(vin)
+        self.get_web_element(self.car_vin_field).send_keys(vin)
 
     def fill_year_field(self, year):
-        self.get_web_element(self.my_car_chosen_car_field_year).send_keys(year)
+        self.get_web_element(self.car_year_field).send_keys(year)
 
-    def click_chosen_car_button_ok_vin(self):
-        self.click(self.my_car_chosen_car_button_ok_vin)
+    def click_button_ok_car_vin(self):
+        self.click(self.button_ok_car_vin)
 
-    def click_chosen_car_button_ok_year(self):
-        self.click(self.my_car_chosen_car_button_ok_year)
+    def click_button_ok_car_year(self):
+        self.click(self.button_ok_car_year)
 
-    def car_vin(self, mode):
+    def text_car_vin(self, mode):
         if mode == 'my_cars':
             return self.get_web_element(self.my_car_my_cars_vin).text
         else:
@@ -122,10 +122,14 @@ class ModulePage(BasePage, ModuleLocator):
         self.click(self.button_blue)
 
     def click_delete_car(self):
-        self.click(self.my_car_chosen_car_button_delete)
+        self.click(self.button_car_delete)
 
     def click_confirm_delete_car(self):
-        self.click(self.my_car_confirm_delete)
+        self.click(self.button_car_confirm_delete)
 
     def click_button_go_to_garage(self):
         self.click(self.my_car_my_cars_button_go_to_garage)
+
+    @property
+    def set_text_car_name(self):
+        return set(map(lambda el: el.text, self.get_web_elements(self.car_name)))

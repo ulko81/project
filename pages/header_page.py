@@ -62,4 +62,4 @@ class HeaderPage(BasePage, HeaderLocator):
 
     @property
     def text_my_car(self):
-        return self.get_web_element(self.my_car_with_car).text
+        return self.get_web_element(self.my_car_with_car).text.replace('\n', '')
