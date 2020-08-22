@@ -13,12 +13,12 @@ class Browser:
                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
-                   'linux': '/virtualenv/python3.6.7/bin/'
+                   'linux': '/web_drivers/'
                   }
 
     def get_driver_path(self):
         if os.name == 'posix':
-            return os.path.join(os.environ['HOME'] + self.drivers_dir['linux'], self.driver_name[self.get_browser][:-4])
+            return os.path.join(self.drivers_dir['linux'], self.driver_name[self.get_browser][:-4])
         else:
             return os.path.join(self.drivers_dir['windows'], self.driver_name[self.get_browser])
 
@@ -42,5 +42,5 @@ class Browser:
 
     @property
     def get_browser(self):
-        return os.environ.get('BROWSER') if os.environ.get('CI') else self.BROWSER_NAME
+        return os.environ.get('BROWSER') if os.environ.get('USER') else self.BROWSER_NAME
 
