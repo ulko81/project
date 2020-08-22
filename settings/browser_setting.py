@@ -13,7 +13,7 @@ class Browser:
                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
-                   'linux': '/webdrivers/'
+                   'linux': '/web_drivers/'
                   }
 
     def get_driver_path(self):
