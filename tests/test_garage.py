@@ -13,6 +13,7 @@ class TestGarage(CarMethod):
 
     @pytest.mark.smoke
     @pytest.mark.garage
+    @pytest.mark.skip
     def test_add_update_delete_car_by_my_car(self):
         self.driver.get(TEST_URL)
         my_car = HeaderPage(self.driver)
@@ -27,6 +28,7 @@ class TestGarage(CarMethod):
 
     @pytest.mark.smoke
     @pytest.mark.garage
+    @pytest.mark.skip
     def test_check_name_my_car(self):
         self.driver.get(TEST_URL)
         my_car = HeaderPage(self.driver)
@@ -38,6 +40,7 @@ class TestGarage(CarMethod):
 
     @pytest.mark.smoke
     @pytest.mark.garage
+    @pytest.mark.skip
     def test_add_update_delete_car_by_parts_search(self):
         self.driver.get(TEST_URL)
         my_car = HeaderPage(self.driver)
