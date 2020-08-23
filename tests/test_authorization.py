@@ -29,7 +29,7 @@ class TestAuthorization(AuthorizationMethod):
         self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         card.click_button_buy()
         assert header.text_digit_cart_header
-        header.click_cart_in_header()
+        header.click_cart()
         module_cart.click_module_button_order()
         self.wait_client_loader(self.driver)
         self.login_checkout(self.driver)
@@ -54,7 +54,7 @@ class TestAuthorization(AuthorizationMethod):
         self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
         card.click_button_buy()
         assert header.text_digit_cart_header
-        header.click_cart_in_header()
+        header.click_cart()
         module_cart.click_module_button_order()
         self.wait_client_loader(self.driver)
         self.login_multi_checkout(self.driver)

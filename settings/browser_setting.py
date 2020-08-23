@@ -10,16 +10,16 @@ class Browser:
 
     driver_name = {'chrome': 'chromedriver.exe',
                    'firefox': 'geckodriver.exe'
-                  }
+                   }
 
     drivers_dir = {'windows': os.path.abspath('../drivers/'),
                    'linux': '/web_drivers/'
-                  }
+                   }
 
     def get_driver_path(self):
         if os.name == 'posix':
             return os.path.join(self.drivers_dir['linux'], self.driver_name[self.get_browser][:-4])
-            #return os.path.join(self.drivers_dir['linux'], 'chromedriver.exe'[:-4])
+
         else:
             return os.path.join(self.drivers_dir['windows'], self.driver_name[self.get_browser])
 
@@ -29,7 +29,6 @@ class Browser:
         capabilities["pageLoadStrategy"] = page_load_strategy
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--window-size={width_},{height_}'.format(width_=width, height_=height))
-        #chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
         return webdriver.Chrome(options=chrome_options, desired_capabilities=capabilities,
                                 executable_path=self.get_driver_path())
@@ -40,7 +39,6 @@ class Browser:
         firefox_options.add_argument('--window-size={width_},{height_}'.format(width_=width, height_=height))
         return webdriver.Firefox(firefox_options=firefox_options, desired_capabilities=caps,
                                  executable_path=self.get_driver_path())
-
 
     @property
     def get_browser(self):
