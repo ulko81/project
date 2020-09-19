@@ -1,24 +1,25 @@
 from pages.base_page import BasePage
-from locators.checkout_locator import CheckoutLocator
+from mixins.mixin_checkout import MixinCheckout
 
 
-class CheckoutPage(BasePage, CheckoutLocator):
+class CheckoutPage(BasePage, MixinCheckout):
 
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(driver)
+        MixinCheckout.__init__(self)
 
     def fill_checkout_phone_field(self, phone):
         self.get_web_element(self.phone_field).send_keys(phone)
 
     def fill_checkout_pass_field(self, password):
-        self.get_web_element(self.pass_field).send_keys(password)
+        self.get_web_element(self.password_field).send_keys(password)
 
     def click_checkout_enter(self):
         self.click(self.button_blue)
 
     @property
     def text_checkout_user_name(self):
-        return self.get_web_element(self.checkout_user_name).text
+        return self.get_web_element(self.username).text
 
     def check_load_checkout(self):
         self.get_web_element(self.delivery_tooltip)

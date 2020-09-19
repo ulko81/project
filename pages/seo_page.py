@@ -1,11 +1,12 @@
 from pages.base_page import BasePage
-from locators.base_locator import BaseLocator
+from mixins.mixin_seo import MixinSEO
 
 
-class SeoPage(BasePage, BaseLocator):
+class SeoPage(BasePage, MixinSEO):
 
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(self, driver)
+        MixinSEO.__init__(self)
 
     @property
     def list_text_breadcrumbs(self):
@@ -25,7 +26,7 @@ class SeoPage(BasePage, BaseLocator):
 
     @property
     def text_title_h1(self):
-        return self.get_web_element(self.base_h1).text
+        return self.get_web_element(self.tag_h1).text
 
     def click_popular_manafacture(self, car):
         list(filter(lambda el: el.text == car, self.get_web_elements(self.popular_manufactures)))[0].click()
@@ -40,4 +41,3 @@ class SeoPage(BasePage, BaseLocator):
     @property
     def text_title_all_type_models(self):
         return self.get_web_element(self.cars_block_title).text
-

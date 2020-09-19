@@ -71,6 +71,13 @@ class BasePage:
         except TimeoutException as e:
             raise exception.ElementNotFoundException(item, e)
 
+    def value_present_in_element(self, item, value):
+        try:
+            element = self.wait.until(expected_conditions.text_to_be_present_in_element_value(item, value))
+            return element
+        except TimeoutException as e:
+            raise exception.ElementNotFoundException(item, e)
+
     def amount_of_elements(self, item):
         try:
             element = self.wait.until(expected_conditions.presence_of_all_elements_located(item))
@@ -79,7 +86,7 @@ class BasePage:
             raise exception.ElementNotFoundException(item, e)
 
     def get_element_with_text(self, text):
-        item = By.XPATH, '//*[text() = "{}"]'.format(text)
+        item = By.XPATH, f'//*[text() = "{text}"]'
         try:
             element = self.wait.until(expected_conditions.presence_of_element_located(item))
             return element
@@ -87,7 +94,7 @@ class BasePage:
             raise exception.ElementNotFoundException(item, e)
 
     def get_elements_with_text(self, text):
-        item = 'By.Xpath', '//*[text() = "{}"]'.format(text)
+        item = 'By.Xpath', f'//*[text() = "{text}"]'
         try:
             element = self.wait.until(expected_conditions.presence_of_all_elements_located(item))
             return element
@@ -95,7 +102,7 @@ class BasePage:
             raise exception.ElementNotFoundException(item, e)
 
     def get_element_contain_text(self, text):
-        item = 'By.Xpath', '//*[contains(text(), "{}")]'.format(text)
+        item = 'By.Xpath', f'//*[contains(text(), "{text}")]'
         try:
             element = self.wait.until(expected_conditions.presence_of_element_located(item))
             return element
@@ -103,7 +110,7 @@ class BasePage:
             raise exception.ElementNotFoundException(item, e)
 
     def get_elements_contains_text(self, text):
-        item = By.XPATH, '//*[contains(text(), "{}")]'.format(text)
+        item = By.XPATH, f'//*[contains(text(), "{text}")]'
         try:
             element = self.wait.until(expected_conditions.presence_of_all_elements_located(item))
             return element

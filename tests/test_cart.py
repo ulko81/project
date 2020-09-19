@@ -41,6 +41,7 @@ class TestCart(GeneralMethod):
         card.click_to_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -75,6 +76,7 @@ class TestCart(GeneralMethod):
         card.click_offer_in_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -110,6 +112,7 @@ class TestCart(GeneralMethod):
         search.get_search_recommended_buttons_in_cart[0].click()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -144,6 +147,7 @@ class TestCart(GeneralMethod):
         search.get_first_offers_in_cart_button[0].click()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -174,6 +178,7 @@ class TestCart(GeneralMethod):
         catalog.click_first_in_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -206,6 +211,7 @@ class TestCart(GeneralMethod):
         main.click_first_in_cart_button_you_watched()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -234,6 +240,7 @@ class TestCart(GeneralMethod):
         cart.click_first_buy_button_recommended()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -264,6 +271,7 @@ class TestCart(GeneralMethod):
         full_search_product.click_first_in_cart_button()
         assert self.driver.current_url == (TEST_URL + project_page.get('cart'))
         cart_info = cart.set_product_info()
+        self.close_draggable(self.driver)
         header_cart.click_cart()
         assert module_cart.check_cart_module_info_loaded('грн')
         cart_module_info = module_cart.set_product_info()
@@ -284,3 +292,53 @@ class TestCart(GeneralMethod):
         assert request_by_vin.check_button_in_cart
         assert header_cart.text_digit_cart_header
         assert header_cart.text_cart_price
+
+    @pytest.mark.smoke
+    @pytest.mark.cart
+    def test_cart_delete_item(self):
+        header_cart = HeaderPage(self.driver)
+        cart = CartPage(self.driver)
+        card = CardPage(self.driver)
+        module_cart = ModulePage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
+        card.click_button_buy()
+        header_cart.click_cart()
+        module_cart.click_to_cart()
+        self.close_draggable(self.driver)
+        cart.click_button_remove_item()
+        assert header_cart.check_cart_without_items
+
+    @pytest.mark.smoke
+    @pytest.mark.cart
+    def test_module_cart_delete_item(self):
+        module_cart = ModulePage(self.driver)
+        header_cart = HeaderPage(self.driver)
+        card = CardPage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
+        card.click_button_buy()
+        header_cart.click_cart()
+        assert module_cart.check_cart_module_info_loaded('грн')
+        module_cart.click_button_remove_item()
+        assert header_cart.check_cart_without_items
+
+    @pytest.mark.smoke
+    @pytest.mark.cart
+    @pytest.mark.parametrize('mode', ('sum', 'total'))
+    def test_cart_change_count_items(self, mode):
+        header_cart = HeaderPage(self.driver)
+        cart = CartPage(self.driver)
+        card = CardPage(self.driver)
+        module_cart = ModulePage(self.driver)
+        self.driver.get(TEST_URL + project_page.get('product_card_with_offers'))
+        decrease = card.text_price
+        increase = str(int(decrease[:-3]) * 2)
+        card.click_button_buy()
+        header_cart.click_cart()
+        module_cart.click_to_cart()
+        self.close_draggable(self.driver)
+        cart.click_button_plus()
+        assert cart.check_field_digit_field_count('2')
+        assert cart.check_sum_price(increase) if mode == 'sum' else cart.check_total_price(increase)
+        cart.click_button_minus()
+        assert cart.check_field_digit_field_count('1')
+        assert cart.check_sum_price(decrease) if mode == 'sum' else cart.check_total_price(decrease)

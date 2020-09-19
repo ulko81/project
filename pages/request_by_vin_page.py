@@ -1,11 +1,12 @@
 from pages.base_page import BasePage
-from locators.request_by_vin_locator import RequestByVinLocator
+from mixins.mixin_request_by_vin import MixinRequestByVin
 
 
-class RequestByVinPage(BasePage, RequestByVinLocator):
+class RequestByVinPage(BasePage, MixinRequestByVin):
 
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(self, driver)
+        MixinRequestByVin.__init__(driver)
 
     def click_buy_button(self):
         self.click(self.button_blue)

@@ -1,11 +1,11 @@
 from pages.base_page import BasePage
-from methods.general_method import GeneralMethod
-from locators.main_locator import MainLocator
+from mixins.mixin_main import MixinMain
 
 
-class MainPage(BasePage, MainLocator):
+class MainPage(BasePage, MixinMain):
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(self, driver)
+        MixinMain.__init__(self)
 
     def click_first_buy_button_you_watched(self):
         self.get_web_elements(self.you_watched_button_blue)[0].click()
@@ -31,8 +31,8 @@ class MainPage(BasePage, MainLocator):
 
     @property
     def text_first_vendor_code(self):
-        return GeneralMethod.get_vendor_code(self.get_web_elements(self.brand)[0].text,
-                                             self.get_web_elements(self.vendor_code)[0].text)
+        return self.get_vendor_code(self.get_web_elements(self.brand)[0].text, self.get_web_elements
+        (self.vendor_code)[0].text)
 
     @property
     def text_first_delivery(self):

@@ -3,6 +3,7 @@ project_page = {
     'product_card_with_offers': '/toyota-brand/maslo-motornoe-toyota-engine-oil-5w-30-5-l-08880-80845-1529790/',
     'product_card_without_offers': '/triclo-brand/stupica-kolesa-904304-27692508/',
     'search': '/search/?query=oc90',
+    'car-search': '/car-search/?task=vin&vin=WVGZZZ1TZAW098763',
     'category': '/zhidkosti-ohlazhdajuschije/',
     'section': '/masla-zhidkosti-avtohimija/',
     'group': '/zhidkosti/',

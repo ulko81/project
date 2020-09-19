@@ -1,12 +1,12 @@
 from pages.base_page import BasePage
-from methods.general_method import GeneralMethod
-from locators.catalog_locator import CatalogLocator
+from mixins.mixin_catalog import MixinCatalog
 
 
-class CatalogPage(BasePage, CatalogLocator):
+class CatalogPage(BasePage, MixinCatalog):
 
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(self, driver)
+        MixinCatalog.__init__(self)
 
     def click_first_buy_button(self):
         self.get_web_elements(self.button_blue)[0].click()
@@ -20,24 +20,24 @@ class CatalogPage(BasePage, CatalogLocator):
 
     @property
     def text_first_price(self):
-        return GeneralMethod.change_format_price(self.get_web_elements(self.base_price)[0].text.lower())
+        return self.change_format_price(self.get_web_elements(self.price)[0].text.lower())
 
     @property
     def text_first_name(self):
-        return self.get_web_elements(self.base_name)[0].text
+        return self.get_web_elements(self.name)[0].text
 
     @property
     def text_first_brand(self):
-        return self.get_web_elements(self.base_brand)[0].text
+        return self.get_web_elements(self.brand)[0].text
 
     @property
     def text_first_vendor_code(self):
-        return GeneralMethod.get_vendor_code(self.get_web_elements(self.base_brand)[0].text,
-                                             self.get_web_elements(self.base_vendor_code)[0].text)
+        return self.get_vendor_code(self.get_web_elements(self.brand)[0].text,
+                                    self.get_web_elements(self.vendor_code)[0].text)
 
     @property
     def text_first_delivery(self):
-        return self.get_web_elements(self.base_delivery)[0].text.lower()
+        return self.get_web_elements(self.delivery)[0].text.lower()
 
     def set_product_info(self):
         return {self.text_first_name, self.text_first_brand, self.text_first_vendor_code, self.text_first_delivery,

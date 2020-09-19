@@ -1,22 +1,23 @@
 from pages.base_page import BasePage
-from locators.header_locator import HeaderLocator
+from mixins.mixin_header import MixinHeader
 
 
-class HeaderPage(BasePage, HeaderLocator):
+class HeaderPage(BasePage, MixinHeader):
 
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(self, driver)
+        MixinHeader.__init__(self)
 
     @property
     def text_digit_cart_header(self):
-        return self.get_web_element(self.cart_header_digit).text
+        return self.get_web_element(self.cart_count_items).text
 
     @property
     def text_cart_price(self):
-        return self.get_web_element(self.cart_header_price).text.lower()
+        return self.get_web_element(self.cart_price).text.lower()
 
     def check_text_digit_cart_header(self, digit):
-        return self.text_present_in_element(self.cart_header_digit, digit)
+        return self.text_present_in_element(self.cart_count_items, digit)
 
     def check_profile_auth(self):
         return self.get_web_element(self.profile_with_auth)
@@ -31,11 +32,11 @@ class HeaderPage(BasePage, HeaderLocator):
         self.get_element_with_text(text).click()
 
     def click_language_select(self):
-        self.click(self.header_language_select)
+        self.click(self.language_select_button)
 
     @property
     def text_current_language(self):
-        return self.get_web_element(self.header_language_select).text
+        return self.get_web_element(self.language_select_button).text
 
     @property
     def text_profile_user(self):
@@ -63,3 +64,7 @@ class HeaderPage(BasePage, HeaderLocator):
     @property
     def text_my_car(self):
         return self.get_web_element(self.my_car_with_car).text.replace('\n', '')
+
+    @property
+    def check_cart_without_items(self):
+        return self.get_web_element(self.cart_without_items)

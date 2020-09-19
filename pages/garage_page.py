@@ -1,20 +1,21 @@
 from pages.base_page import BasePage
-from locators.garage_locator import GarageLocator
+from mixins.mixin_garage import MixinGarage
 
 
-class GaragePage(BasePage, GarageLocator):
+class GaragePage(BasePage, MixinGarage):
 
     def __init__(self, driver):
-        super().__init__(driver)
+        BasePage.__init__(self, driver)
+        MixinGarage.__init__(self)
 
     def click_edit_car(self):
         self.click(self.button_car_controls_edit)
 
     def fill_vin_field(self, vin):
-        self.get_web_element(self.car_vin_field).send_keys(vin)
+        self.get_web_element(self.vin_field).send_keys(vin)
 
     def fill_year_field(self, year):
-        self.get_web_element(self.car_year_field).send_keys(year)
+        self.get_web_element(self.year_field).send_keys(year)
 
     def click_button_ok_car_vin(self):
         self.click(self.button_ok_car_vin)
@@ -39,4 +40,7 @@ class GaragePage(BasePage, GarageLocator):
     @property
     def text_car_name(self):
         return self.get_web_element(self.car_name).text
+
+    def clear_year(self):
+        self.clear_year_field(self.driver, self.carYear_field)
 

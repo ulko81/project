@@ -17,13 +17,13 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
     @pytest.mark.smoke
     @pytest.mark.seo
     @pytest.mark.parametrize('link', SEOMethod.get_sitemap_links(),
-                             ids=['sitemap_link {}'.format(link) for link in SEOMethod.get_sitemap_links()])
+                             ids=[f'sitemap_link {link}' for link in SEOMethod.get_sitemap_links()])
     def test_sitemap(self, link):
         assert 200 == requests.get(link).status_code
 
     @pytest.mark.smoke
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', page_200, ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
+    @pytest.mark.parametrize('page', page_200, ids=[f'{page}: {TEST_URL + project_page.get(page)}'
                                                     for page in page_200])
     def test_page_status_200(self, page):
         link = TEST_URL + project_page.get(page)

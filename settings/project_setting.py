@@ -8,6 +8,7 @@ language_to_url = {
     'EN': '/en'
 }
 
+
 test_user = {
     'name': 'Веб-тестировщик',
     'multi_name': 'тестировщик-ка'

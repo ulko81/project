@@ -6,10 +6,11 @@ from pages.module_page import ModulePage
 from settings.project_setting import TEST_URL, test_user
 from settings.project_page import project_page
 from methods.authorization_method import AuthorizationMethod
+from methods.general_method import GeneralMethod
 
 
 @pytest.mark.usefixtures('get_driver')
-class TestAuthorization(AuthorizationMethod):
+class TestAuthorization(AuthorizationMethod, GeneralMethod):
 
     @pytest.mark.smoke
     @pytest.mark.auth
