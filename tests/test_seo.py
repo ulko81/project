@@ -9,7 +9,7 @@ from pages.card_page import CardPage
 from pages.seo_page import SeoPage
 from helpers.seo_text import *
 from helpers.functions import get_sitemap_links, text_attr_robots, get_attrs_rel_prev_next, get_microdata_type, \
-    get_microdata_types, text_title, text_description, get_microdata_breadcrumbs
+    get_microdata_types, text_title, text_description, get_microdata_breadcrumbs, change_symbols
 from helpers.methods import Methods
 
 
@@ -23,29 +23,28 @@ class TestSEOSSR:
 
     @pytest.mark.smoke
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', page_200, ids=[f'{page}: {TEST_URL + project_page.get(page)}'
-                                                    for page in page_200])
+    @pytest.mark.parametrize('page', page_200, ids=[f'{page}: {TEST_URL + project_page.get(page)}'for page in page_200])
     def test_page_status_200(self, page):
         link = TEST_URL + project_page.get(page)
         assert 200 == requests.get(link).status_code
 
     @pytest.mark.smoke
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', seo_page_noindex_follow, ids=['{}: {}'
-                             .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_follow])
+    @pytest.mark.parametrize('page', seo_page_noindex_follow, ids=[f'{page}: {TEST_URL + project_page.get(page)}'
+                             for page in seo_page_noindex_follow])
     def test_closed_page_follow(self, page):
         assert '<meta content="noindex, follow" name="robots"/>' == text_attr_robots(TEST_URL + project_page.get(page))
 
     @pytest.mark.smoke
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', seo_page_noindex_nofollow, ids=['{}: {}'
-                             .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_nofollow])
+    @pytest.mark.parametrize('page', seo_page_noindex_nofollow, ids=[f'{page}: {TEST_URL + project_page.get(page)}'
+                             for page in seo_page_noindex_nofollow])
     def test_closed_page_nofollow(self, page):
         assert '<meta content="noindex, nofollow" name="robots"/>' == text_attr_robots(TEST_URL +
                                                                                        project_page.get(page))
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('el', Methods.get_links_from_popular_blocks(TEST_URL), ids=['{}: {}'.format(block, page)
+    @pytest.mark.parametrize('el', Methods.get_links_from_popular_blocks(TEST_URL), ids=[f'{block}: {page}'
                              for block, page in Methods.get_links_from_popular_blocks(TEST_URL)])
     def test_popular_block(self, el):
         assert 200 == requests.get(el[1]).status_code
@@ -55,7 +54,7 @@ class TestSEOSSR:
         assert {'prev', 'next'} == get_attrs_rel_prev_next(TEST_URL + project_page.get('pagination'))
 
     @pytest.mark.parametrize('page, types', microdata_types.items(),
-                             ids=['{}: {}' .format(page, TEST_URL + project_page.get(page))
+                             ids=[f'{page}: {TEST_URL + project_page.get(page)}'
                                   for page in microdata_types.keys()])
     @pytest.mark.smoke
     @pytest.mark.seo
@@ -95,13 +94,12 @@ class TestSEOCSR(Methods):
         assert TEST_URL + project_page.get('404') == self.driver.current_url
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('page', seo_page_title, ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
+    @pytest.mark.parametrize('page', seo_page_title, ids=[f'{page}: {TEST_URL + project_page.get(page)}'
                                                           for page in seo_page_title])
     def test_title_ssr_vs_csr(self, page):
         self.driver.get(TEST_URL + project_page.get(page))
         assert self.driver.title == text_title(TEST_URL + project_page.get(page))
-        assert self.seo_client_description(self.driver) == text_description(TEST_URL
-                                                                                           + project_page.get(page))
+        assert self.seo_client_description(self.driver) == text_description(TEST_URL + project_page.get(page))
 
     @pytest.mark.seo
     def test_seo_text_after_autogid(self):
@@ -115,8 +113,8 @@ class TestSEOCSR(Methods):
         seo_category_page = CatalogPage(self.driver)
         self.driver.get(TEST_URL + project_page.get('category'))
         self.change_language(self.driver, current_language)
-        assert self.change_symbols(seo_category_page.text_seo_our_cities, '\n', '') == \
-               self.change_symbols(seo_text_our_cities.get(current_language), '\n ', '')
+        assert change_symbols(seo_category_page.text_seo_our_cities, '\n', '') == \
+               change_symbols(seo_text_our_cities.get(current_language), '\n ', '')
 
     @pytest.mark.seo
     def test_avtogid_selection_tabs(self):
