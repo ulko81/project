@@ -1,10 +1,9 @@
 from helpers.locators import Locators
-from helpers.methods import Methods
+
 
 class MixinGarage:
     def __init__(self):
         self.locators = Locators
-        self.methods = Methods()
         self.button_car_controls_edit = self.locators.car_controls_edit_button
         self.button_ok_car_vin = self.locators.carVIN_button_ok
         self.button_ok_car_year = self.locators.carYear_button_ok
@@ -16,4 +15,3 @@ class MixinGarage:
         self.vin_field = self.locators.carVIN_field
         self.year_field = self.locators.carYear_field
         self.carYear_field = self.locators.carYear_field
-        self.clear_year_field = self.methods.clear_field

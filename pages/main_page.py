@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from mixins.mixin_main import MixinMain
+from helpers.functions import get_vendor_code
 
 
 class MainPage(BasePage, MixinMain):
@@ -31,7 +32,7 @@ class MainPage(BasePage, MixinMain):
 
     @property
     def text_first_vendor_code(self):
-        return self.get_vendor_code(self.get_web_elements(self.brand)[0].text, self.get_web_elements
+        return get_vendor_code(self.get_web_elements(self.brand)[0].text, self.get_web_elements
         (self.vendor_code)[0].text)
 
     @property

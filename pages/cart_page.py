@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from mixins.mixin_cart import MixinCart
+from helpers.functions import get_vendor_code, change_format_date_cart
 
 
 class CartPage(BasePage, MixinCart):
@@ -49,12 +50,12 @@ class CartPage(BasePage, MixinCart):
 
     @property
     def text_first_recommended_vendor_code(self):
-        return self.get_vendor_code(self.get_web_elements(self.recommended_brand)[0].text,
-                                             self.get_web_elements(self.recommended_vendor_code)[0].text)
+        return get_vendor_code(self.get_web_elements(self.recommended_brand)[0].text,
+                               self.get_web_elements(self.recommended_vendor_code)[0].text)
 
     @property
     def text_delivery(self):
-        return self.change_format_date(self.get_web_element(self.delivery_date).text).lower()
+        return change_format_date_cart(self.get_web_element(self.delivery_date).text).lower()
 
     @property
     def text_first_recommended_delivery(self):

@@ -11,11 +11,11 @@ from pages.module_page import ModulePage
 from pages.request_by_vin_page import RequestByVinPage
 from settings.project_setting import TEST_URL
 from settings.project_page import project_page
-from methods.general_method import GeneralMethod
+from helpers.methods import Methods
 
 
 @pytest.mark.usefixtures('get_driver')
-class TestCart(GeneralMethod):
+class TestCart(Methods):
 
     @pytest.mark.smoke
     @pytest.mark.cart

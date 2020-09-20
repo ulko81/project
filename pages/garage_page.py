@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from mixins.mixin_garage import MixinGarage
+from selenium.webdriver.common.keys import Keys
 
 
 class GaragePage(BasePage, MixinGarage):
@@ -42,5 +43,5 @@ class GaragePage(BasePage, MixinGarage):
         return self.get_web_element(self.car_name).text
 
     def clear_year(self):
-        self.clear_year_field(self.driver, self.carYear_field)
+        self.get_web_element(self.carYear_field).send_keys(Keys.CONTROL, 'a', Keys.BACKSPACE)
 

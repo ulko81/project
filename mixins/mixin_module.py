@@ -1,11 +1,9 @@
 from helpers.locators import Locators
-from helpers.methods import Methods
 
 
 class MixinModule:
     def __init__(self):
         self.locators = Locators()
-        self.methods = Methods()
         self.button_language_select = self.locators.lang_select_button
         self.order = self.locators.button_checkout
         self.list_years = self.locators.car_year_block_button
@@ -43,7 +41,6 @@ class MixinModule:
         self.button_car_delete = self.locators.button_trash
         self.button_confirm_delete = self.locators.garage_dd_content_button_blue
         self.my_cars_button_go_to_garage = self.locators.garage_car_list_a
-        self.car_name =self.locators.car_name
+        self.car_name = self.locators.car_name
         self.button_to_cart = self.locators.button_to_cart
         self.cart_remove_item = self.locators.cart_remove
-        self.clear_year_field = self.methods.clear_field

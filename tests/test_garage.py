@@ -1,13 +1,13 @@
 import pytest
-from methods.car_method import CarMethod
 from settings.project_setting import TEST_URL, test_car
 from pages.header_page import HeaderPage
 from pages.module_page import ModulePage
 from pages.garage_page import GaragePage
+from helpers.methods import Methods
 
 
 @pytest.mark.usefixtures('get_driver')
-class TestGarage(CarMethod):
+class TestGarage(Methods):
     expected_car = 'TOYOTA YARIS (P13) 1.0 (KSP130)'
     expected_car_year = '2013'
 

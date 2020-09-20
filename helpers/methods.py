@@ -1,27 +1,16 @@
 import os
-import json
-import random
 import requests
-
+from bs4 import BeautifulSoup
+from pages.base_page import BasePage
 from pages.module_page import ModulePage
 from pages.header_page import HeaderPage
 from pages.garage_page import GaragePage
 from pages.checkout_page import CheckoutPage
-from mixins.mixin_method import MixinMethod
-
-from helpers.dict_helper import *
-from selenium.webdriver.common.keys import Keys
-from settings.project_setting import TEST_URL
-from settings.project_page import project_page
-from bs4 import BeautifulSoup
-from pages.base_page import BasePage
 from helpers.locators import Locators
+from helpers.functions import get_random_elements
 
 
-class Methods(MixinMethod):
-
-    def __init__(self):
-        MixinMethod.__init__(self)
+class Methods:
 
     @staticmethod
     def add_car(driver, manufacture, model, type_model, modification, mode, year=None):
@@ -67,15 +56,6 @@ class Methods(MixinMethod):
         driver.execute_script("window.scrollTo(0, document.body.scrollTop);")
         delete_car.click_delete_car()
         delete_car.click_confirm_delete_car()
-
-    @staticmethod
-    def change_format_date_cart(date):
-        if date.find('.') != -1:
-            day = int(date[:date.find('.')])
-            month = month_cart.get(date[3:5])
-            time = date[10:].replace('\n', ' ')
-            return '{} {}{}'.format(day, month, time)
-        return date.replace('\n', ' ')
 
     @property
     def get_username(self):
@@ -153,83 +133,33 @@ class Methods(MixinMethod):
             language.click_language_select()
             language.click_module_language_option(selected_language)
 
-    def wait_client_loader(self, driver):
+    @staticmethod
+    def wait_client_loader(driver):
         timeout = 10
         preloader = BasePage(driver, timeout)
         try:
-            preloader.get_visible_element(self.preloader_icon)
+            preloader.get_visible_element(Locators.preloader_icon)
         except Exception:
             pass
-        preloader.check_invisible_element(self.preloader_icon)
+        preloader.check_invisible_element(Locators.preloader_icon)
 
     @staticmethod
-    def change_format_price(price):
-        if language_cur.get('ru') in price:
-            count = price.find(language_cur.get('ru')) + 3
-            price = price[:count]
-            return price
-
-    @staticmethod
-    def get_vendor_code(trademark, trademark_with_vendor_code):
-        return trademark_with_vendor_code.replace(trademark, '').strip()
-
-    @staticmethod
-    def get_random_elements(old_list, qnt):
-        new_list = []
-        if len(old_list) > qnt:
-            for i in range(qnt):
-                new_list.append(old_list[random.randint(0, len(old_list) - 1)])
-            return new_list
-        return old_list
-
-    @staticmethod
-    def change_symbols(string, old_symbols, new_symbols):
-        return string.replace(old_symbols, new_symbols)
-
-    @staticmethod
-    def clear_field(driver, locator):
-        field = BasePage(driver)
-        return field.get_web_element(locator).send_keys(Keys.CONTROL, 'a', Keys.BACKSPACE)
-
-    def close_draggable(self, driver):
+    def close_draggable(driver):
         timeout = 10
         draggable = BasePage(driver, timeout)
         try:
             pass
-            # draggable.get_first_visible_element(self.icon_close_draggable).click()
+            # draggable.get_first_visible_element(Locators.icon_close_draggable).click()
         except Exception:
             pass
-
-    @staticmethod
-    def get_sitemap_links():
-        page = requests.get(TEST_URL + project_page.get('sitemap'))
-        soup = BeautifulSoup(page.content, 'html.parser')
-        return list(map(lambda loc: loc.text, soup.find_all('loc')))
-
-    @staticmethod
-    def text_attr_robots(link):
-        page = requests.get(link)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        return str(soup.find('meta', attrs={'name': 'robots'}))
-
-    @staticmethod
-    def text_title(link):
-        page = requests.get(link)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        return str(soup.find('title').text)
-
-    @staticmethod
-    def text_description(link):
-        page = requests.get(link)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        return str(soup.find('meta', attrs={'name': 'description'}).attrs['content'])
 
     @staticmethod
     def seo_client_description(driver):
         description = BasePage(driver)
         return description.get_web_element(Locators.description).get_attribute('content')
 
-    def get_links_from_popular_blocks(self, url):
+    @staticmethod
+    def get_links_from_popular_blocks(url):
         pages_block = []
         popular_block = {
             'manufactures': Locators.popular_manufactures,
@@ -240,40 +170,6 @@ class Methods(MixinMethod):
         soup = BeautifulSoup(page.content, 'html.parser')
         for block in popular_block.keys():
             links = list(map(lambda link: link.get('href'), soup.select(popular_block.get(block)[1])))
-            pages = list(map(lambda el: url + el, self.get_random_elements(links, 5)))
+            pages = list(map(lambda el: url + el, get_random_elements(links, 5)))
             pages_block.extend(zip([block for __ in range(0, len(pages))], pages))
         return pages_block
-
-    @staticmethod
-    def get_attrs_rel_prev_next(link):
-        set_prev_next = set()
-        page = requests.get(link)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        links = soup.find_all('link', attrs={'rel': True})
-        for link in links:
-            if link.attrs['rel'][0] == 'next' or link.attrs['rel'][0] == 'prev':
-                set_prev_next.add(link.attrs['rel'][0])
-        return set_prev_next
-
-    @staticmethod
-    def get_microdata_types(url):
-        str_microdata_type = ''
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        scripts = soup.select('script[type="application/ld+json"]')
-        for script in scripts:
-            str_microdata_type += json.loads("".join(script.contents)).get('@type') + '_'
-        return str_microdata_type[:-1]
-
-    @staticmethod
-    def get_microdata_type(url, types):
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        scripts = soup.select('script[type="application/ld+json"]')
-        for script in scripts:
-            if types == json.loads("".join(script.contents)).get('@type'):
-                return json.loads("".join(script.contents))
-
-    def get_microdata_breadcrumbs(self, url):
-        return list(map(lambda el: el.get('item').get('name'),
-                        self.get_microdata_type(url, 'BreadcrumbList').get('itemListElement')))

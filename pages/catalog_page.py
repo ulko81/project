@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from mixins.mixin_catalog import MixinCatalog
+from helpers.functions import get_vendor_code, change_format_price
 
 
 class CatalogPage(BasePage, MixinCatalog):
@@ -20,7 +21,7 @@ class CatalogPage(BasePage, MixinCatalog):
 
     @property
     def text_first_price(self):
-        return self.change_format_price(self.get_web_elements(self.price)[0].text.lower())
+        return change_format_price(self.get_web_elements(self.price)[0].text.lower())
 
     @property
     def text_first_name(self):
@@ -32,8 +33,8 @@ class CatalogPage(BasePage, MixinCatalog):
 
     @property
     def text_first_vendor_code(self):
-        return self.get_vendor_code(self.get_web_elements(self.brand)[0].text,
-                                    self.get_web_elements(self.vendor_code)[0].text)
+        return get_vendor_code(self.get_web_elements(self.brand)[0].text,
+                               self.get_web_elements(self.vendor_code)[0].text)
 
     @property
     def text_first_delivery(self):

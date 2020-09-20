@@ -5,7 +5,7 @@ from mixins.mixin_checkout import MixinCheckout
 class CheckoutPage(BasePage, MixinCheckout):
 
     def __init__(self, driver):
-        BasePage.__init__(driver)
+        BasePage.__init__(self, driver)
         MixinCheckout.__init__(self)
 
     def fill_checkout_phone_field(self, phone):

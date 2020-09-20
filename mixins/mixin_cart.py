@@ -1,11 +1,9 @@
 from helpers.locators import Locators
-from helpers.methods import Methods
 
 
 class MixinCart:
     def __init__(self):
         self.locators = Locators()
-        self.methods = Methods()
         self.button_blue = self.locators.btn_blue
         self.button_green = self.locators.btn_green
         self.cart_remove_item_button = self.locators.cart_remove
@@ -24,5 +22,3 @@ class MixinCart:
         self.delivery_date = self.locators.grid_table_delivery_date
         self.price_sum = self.locators.grid_table_price_sum
         self.field_count = self.locators.quantity_field
-        self.get_vendor_code = self.methods.get_vendor_code
-        self.change_format_date = self.methods.change_format_date_cart

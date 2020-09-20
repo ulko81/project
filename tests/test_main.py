@@ -1,11 +1,11 @@
 import pytest
 from pages.main_page import MainPage
 from settings.project_setting import TEST_URL, language
-from methods.general_method import GeneralMethod
+from helpers.methods import Methods
 
 
 @pytest.mark.usefixtures('get_driver')
-class Testmain(GeneralMethod):
+class Testmain(Methods):
     title_blocks = {
         'RU': ('НЕОБХОДИМОЕ ДЛЯ КАЖДОГО АВТО', 'ПОПУЛЯРНЫЕ МОДЕЛИ АВТО', 'ПОПУЛЯРНЫЕ МАРКИ', 'ПОПУЛЯРНЫЕ ЗАПЧАСТИ',
                'ПОПУЛЯРНЫЕ БРЕНДЫ АВТОЗАПЧАСТЕЙ', 'АВТОГИД ПОМОЩНИК ПО УДОБНОМУ ИСПОЛЬЗОВАНИЮ АВТОМОБИЛЯ'),
@@ -27,5 +27,3 @@ class Testmain(GeneralMethod):
         assert len(actual_title_blocks) == len(expected_title_blocks)
         for i in range(len(expected_title_blocks)):
             assert actual_title_blocks[i] == expected_title_blocks[i]
-
-

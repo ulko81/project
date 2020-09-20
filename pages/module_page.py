@@ -1,5 +1,7 @@
 from pages.base_page import BasePage
 from mixins.mixin_module import MixinModule
+from helpers.functions import change_format_date_cart
+from selenium.webdriver.common.keys import Keys
 
 
 class ModulePage(BasePage, MixinModule):
@@ -97,7 +99,7 @@ class ModulePage(BasePage, MixinModule):
 
     @property
     def text_delivery(self):
-        return CartMethod.change_format_date_cart(self.get_web_element(self.delivery).text).lower()
+        return change_format_date_cart(self.get_web_element(self.delivery).text).lower()
 
     def set_product_info(self):
         return {self.text_price, self.text_name, self.text_brand, self.text_vendor_code, self.text_delivery}
@@ -131,6 +133,6 @@ class ModulePage(BasePage, MixinModule):
         self.click(self.cart_remove_item)
 
     def clear_year(self):
-        self.clear_year_field(self.driver, self.carYear_field)
+        self.get_web_element(self.carYear_field).send_keys(Keys.CONTROL, 'a', Keys.BACKSPACE)
 
 

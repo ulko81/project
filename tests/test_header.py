@@ -1,11 +1,11 @@
 import pytest
 from pages.header_page import HeaderPage
 from settings.project_setting import TEST_URL, language
-from methods.general_method import GeneralMethod
+from helpers.methods import Methods
 
 
 @pytest.mark.usefixtures('get_driver')
-class TestHeader(GeneralMethod):
+class TestHeader(Methods):
 
     mega_menu_elements = {
         'RU': ('АВТОЗАПЧАСТИ', 'КУЗОВНЫЕ ЗАПЧАСТИ', 'МАСЛА, ЖИДКОСТИ И АВТОХИМИЯ', 'ШИНЫ И ДИСКИ', 'ОСВЕЩЕНИЕ',

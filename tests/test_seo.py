@@ -1,8 +1,6 @@
 import pytest
 import requests
 from deepdiff import DeepDiff
-from methods.seo_method import SEOMethod
-from methods.general_method import GeneralMethod
 from settings.project_setting import TEST_URL, language, test_car, language_to_url
 from settings.project_page import *
 from pages.main_page import MainPage
@@ -10,14 +8,16 @@ from pages.catalog_page import CatalogPage
 from pages.card_page import CardPage
 from pages.seo_page import SeoPage
 from helpers.seo_text import *
+from helpers.functions import get_sitemap_links, text_attr_robots, get_attrs_rel_prev_next, get_microdata_type, \
+    get_microdata_types, text_title, text_description, get_microdata_breadcrumbs
+from helpers.methods import Methods
 
 
-class TestSEOSSR(SEOMethod, GeneralMethod):
+class TestSEOSSR:
 
     @pytest.mark.smoke
     @pytest.mark.seo
-    @pytest.mark.parametrize('link', SEOMethod.get_sitemap_links(),
-                             ids=[f'sitemap_link {link}' for link in SEOMethod.get_sitemap_links()])
+    @pytest.mark.parametrize('link', get_sitemap_links(), ids=[f'sitemap_link {link}' for link in get_sitemap_links()])
     def test_sitemap(self, link):
         assert 200 == requests.get(link).status_code
 
@@ -34,26 +34,25 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
     @pytest.mark.parametrize('page', seo_page_noindex_follow, ids=['{}: {}'
                              .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_follow])
     def test_closed_page_follow(self, page):
-        assert '<meta content="noindex, follow" name="robots"/>' == SEOMethod.text_attr_robots(TEST_URL +
-                                                                                               project_page.get(page))
+        assert '<meta content="noindex, follow" name="robots"/>' == text_attr_robots(TEST_URL + project_page.get(page))
 
     @pytest.mark.smoke
     @pytest.mark.seo
     @pytest.mark.parametrize('page', seo_page_noindex_nofollow, ids=['{}: {}'
                              .format(page, TEST_URL + project_page.get(page)) for page in seo_page_noindex_nofollow])
     def test_closed_page_nofollow(self, page):
-        assert '<meta content="noindex, nofollow" name="robots"/>' == SEOMethod.text_attr_robots(TEST_URL +
-                                                                                                 project_page.get(page))
+        assert '<meta content="noindex, nofollow" name="robots"/>' == text_attr_robots(TEST_URL +
+                                                                                       project_page.get(page))
 
     @pytest.mark.seo
-    @pytest.mark.parametrize('el', SEOMethod.get_links_from_popular_blocks(TEST_URL), ids=['{}: {}'.format(block, page)
-                             for block, page in SEOMethod.get_links_from_popular_blocks(TEST_URL)])
+    @pytest.mark.parametrize('el', Methods.get_links_from_popular_blocks(TEST_URL), ids=['{}: {}'.format(block, page)
+                             for block, page in Methods.get_links_from_popular_blocks(TEST_URL)])
     def test_popular_block(self, el):
         assert 200 == requests.get(el[1]).status_code
 
     @pytest.mark.seo
     def test__pagination_link_attrs_rel_prev_next(self):
-        assert {'prev', 'next'} == SEOMethod.get_attrs_rel_prev_next(TEST_URL + project_page.get('pagination'))
+        assert {'prev', 'next'} == get_attrs_rel_prev_next(TEST_URL + project_page.get('pagination'))
 
     @pytest.mark.parametrize('page, types', microdata_types.items(),
                              ids=['{}: {}' .format(page, TEST_URL + project_page.get(page))
@@ -61,13 +60,12 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
     @pytest.mark.smoke
     @pytest.mark.seo
     def test_microdata(self, page, types):
-        assert self.get_microdata_types(TEST_URL + project_page.get(page)) == types
-        assert self.get_microdata_type(TEST_URL + project_page.get(page), 'Organization') \
-                                       == microdata_organization.get(TEST_URL)
-        assert self.get_microdata_type(TEST_URL + project_page.get(page), 'WebSite') \
-               == microdata_website.get(TEST_URL)
+        assert get_microdata_types(TEST_URL + project_page.get(page)) == types
+        assert get_microdata_type(TEST_URL + project_page.get(page), 'Organization') \
+               == microdata_organization.get(TEST_URL)
+        assert get_microdata_type(TEST_URL + project_page.get(page), 'WebSite') == microdata_website.get(TEST_URL)
         if page == 'product_card_with_offers':
-            diff = DeepDiff(self.get_microdata_type(TEST_URL + project_page.get(page), 'Product'),
+            diff = DeepDiff(get_microdata_type(TEST_URL + project_page.get(page), 'Product'),
                             microdata_product, view='tree')
             assert None == diff.to_dict().get('dictionary_item_removed')
 
@@ -76,19 +74,19 @@ class TestSEOSSR(SEOMethod, GeneralMethod):
                              ids=['{}: {}'.format(page, TEST_URL + project_page.get(page))
                                   for page in breadcrumbs.keys()])
     @pytest.mark.seo
-    def test_microdata_breadcrumbs(self, page, breadcrumbs_microdata, current_language):
+    @staticmethod
+    def test_microdata_breadcrumbs(page, breadcrumbs_microdata, current_language):
         if page != 'laxima_spare':
             expected_breadcrumbs = breadcrumbs_microdata.get(current_language)
-            actual_microdata_breadcrumbs = self.get_microdata_breadcrumbs(TEST_URL +
-                                                                          language_to_url.get(current_language)
-                                                                          + project_page.get(page))
+            actual_microdata_breadcrumbs = get_microdata_breadcrumbs(TEST_URL + language_to_url.get(current_language)
+                                                                     + project_page.get(page))
             assert len(actual_microdata_breadcrumbs) == len(expected_breadcrumbs)
             for el in range(len(actual_microdata_breadcrumbs)):
                 assert actual_microdata_breadcrumbs[el] == expected_breadcrumbs[el]
 
 
 @pytest.mark.usefixtures('get_driver')
-class TestSEOCSR(SEOMethod, GeneralMethod):
+class TestSEOCSR(Methods):
 
     @pytest.mark.seo
     def test_404(self):
@@ -101,8 +99,8 @@ class TestSEOCSR(SEOMethod, GeneralMethod):
                                                           for page in seo_page_title])
     def test_title_ssr_vs_csr(self, page):
         self.driver.get(TEST_URL + project_page.get(page))
-        assert self.driver.title == SEOMethod.text_title(TEST_URL + project_page.get(page))
-        assert SEOMethod.seo_client_description(self.driver) == SEOMethod.text_description(TEST_URL
+        assert self.driver.title == text_title(TEST_URL + project_page.get(page))
+        assert self.seo_client_description(self.driver) == text_description(TEST_URL
                                                                                            + project_page.get(page))
 
     @pytest.mark.seo
