@@ -4,4 +4,4 @@ class ElementNotFoundException(Exception):
         self.item = item
 
     def __str__(self):
-        return f"The element with By.{self.item[0]} and locator - '{self.item[1]}' was not found"
+        return f'The element with By.{self.item[0]} and locator - "{self.item[1]}" was not found'

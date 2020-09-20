@@ -20,6 +20,4 @@ def get_driver(request):
 
 
 def pytest_html_report_title(report):
-   report.title = "Report From {}".format(datetime.today().strftime('%d-%m-%Y'))
-
-
+    report.title = f'Report From {datetime.today().strftime("%d-%m-%Y")}'

@@ -30,4 +30,3 @@ h1_cart = {'h1_upc': '08880-80845',
 
 user_contract = ''
 user_multi_contract = ''
-
