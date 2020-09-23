@@ -48,7 +48,6 @@ class Locators:
 
     description = By.CSS_SELECTOR, 'meta[name = "description"]'
 
-
     chosen_car_info_vin = By.XPATH, '//div[@class = "chosen-car-info"]//div[contains(text(), "VIN")]'
     container_our_cities = By.CSS_SELECTOR, 'div[class = "container text-container"]'
 
@@ -67,10 +66,6 @@ class Locators:
     grid_table_delivery_date = By.CSS_SELECTOR, '.grid-table .delivery, .grid-table .exists'
     grid_table_price_sum = By.CSS_SELECTOR, '.grid-table .total'
 
-    # my_car_empty = By.CLASS_NAME, 'garage'
-    garage = By.CLASS_NAME, 'garage'
-    # my_car_with_car = By.CSS_SELECTOR, '.garage  div[title = "Выбранный автомобиль"]'
-    garage_selected_car = By.CSS_SELECTOR, '.garage  div[title = "Выбранный автомобиль"]'
     garage_dd_content_button_blue = By.CSS_SELECTOR, '.garage-dd-content .btn-blue'
 
     garage_add_car_years = By.CSS_SELECTOR, '.garage-add-car .garage-dd-toggler:nth-child(1)'
@@ -102,6 +97,8 @@ class Locators:
     info_block_button_blue = By.CSS_SELECTOR, '.info-block-wrapper .btn-blue'
     info_block_button_green = By.CSS_SELECTOR, '.info-block-wrapper .btn-green'
 
+    icon_search = By.CSS_SELECTOR, '.icon button[aria-label = "search"]'
+
     lang_dd_button_button = By.CSS_SELECTOR, '.lang-dd-button button'
     lang_select_button = By.CSS_SELECTOR, '.lang-select button'
     list_item_button_blue = By.CSS_SELECTOR, '.list-item-btns .btn-blue'
@@ -117,6 +114,9 @@ class Locators:
 
     mega_menu_link = By.CLASS_NAME, 'mega-menu-link'
 
+    multi_search_input = By.CLASS_NAME, 'multi-search-input'
+    multi_search_results_wrapper = By.CLASS_NAME, 'multi-search-results-wrapper'
+
     name_inner_vendor_code = By.CSS_SELECTOR, '.name-inner a strong'
     name_inner_name = By.CSS_SELECTOR, '.name-inner p'
     name_inner_brand = By.CSS_SELECTOR, '.name-inner .name>strong'
@@ -128,6 +128,9 @@ class Locators:
     nested_row_0_name = By.CSS_SELECTOR, '.nested-row-0:nth-child(1) .name-inner p'
     nested_row_0_brand = By.CSS_SELECTOR, '.nested-row-0:nth-child(1) .name-inner .name>strong'
     nested_row_0_delivery = By.CSS_SELECTOR, '.nested-row-0:nth-child(1) .general-info .delivery'
+
+    new_search_toggler_body = By.CLASS_NAME, 'new-search-toggler-body'
+
 
     popular_manufactures = By.CSS_SELECTOR, '.popular-manufactures-container a'
     popular_models = By.CSS_SELECTOR, '.popular-models-block a'
@@ -149,6 +152,9 @@ class Locators:
     price_wrapper_button_green = By.CSS_SELECTOR, '.price-wrapper .btn-green'
 
     quantity_field = By.CSS_SELECTOR, '.quantity-field input'
+
+    search_input = By.CLASS_NAME, 'search-input'
+    search_results_a = By.CSS_SELECTOR, '.search-results a'
 
     short_info_block_brand = By.CSS_SELECTOR, '.short-info-block .bold:first-child'
     short_info_block_vendor_code = By.CSS_SELECTOR, '.short-info-block .bold:nth-child(2)'

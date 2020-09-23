@@ -70,3 +70,15 @@ class MainPage(BasePage, MixinMain):
     @property
     def text_guide_tab_selected(self):
         return self.get_web_element(self.guide_tab_selected).text
+
+    def click_search_field(self):
+        self.click(self.search_field)
+
+    def fill_search_field(self, query):
+        self.get_web_element(self.input_search_field).send_keys(query)
+
+    def click_search_button(self):
+        self.click(self.icon_search)
+
+    def check_search_full_result(self):
+        return self.get_web_element(self.full_search_result)

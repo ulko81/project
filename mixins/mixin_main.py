@@ -18,3 +18,7 @@ class MixinMain:
         self.popular_manufactures = self.locators.popular_manufactures
         self.popular_models = self.locators.popular_models
         self.popular_categories = self.locators.popular_categories
+        self.search_field = self.locators.new_search_toggler_body
+        self.full_search_result = self.locators.multi_search_results_wrapper
+        self.input_search_field = self.locators.multi_search_input
+        self.icon_search = self.locators.icon_search

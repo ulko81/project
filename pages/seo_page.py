@@ -8,7 +8,6 @@ class SeoPage(BasePage, MixinSEO):
         BasePage.__init__(self, driver)
         MixinSEO.__init__(self)
 
-
     @property
     def list_text_breadcrumbs(self):
         return list(map(lambda el: el.text, self.get_web_elements(self.breadcrumbs)))

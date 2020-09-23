@@ -58,5 +58,5 @@ class TestAuthorization(Methods):
         module.click_module_button_order()
         self.wait_client_loader(self.driver)
         self.login_multi_checkout(self.driver)
-        assert test_user.get('multi_name').lower() in header.text_profile_user
-        assert test_user.get('multi_name').lower() in checkout.text_checkout_user_name
+        assert test_user.get('multi_name').lower() in header.text_profile_user.lower()
+        assert test_user.get('multi_name').lower() in checkout.text_checkout_user_name.lower()

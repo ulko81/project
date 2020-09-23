@@ -28,9 +28,9 @@ microdata_types = {'main': 'Organization_WebSite',
 breadcrumbs = {
     'product_card_with_offers': {'RU': ('Масла моторные', 'Масла моторные Toyota',
                                                    'Масло моторное Toyota ENGINE OIL 5W-30, 5 л Toyota 08880-80845'),
-                                            'UA': ('Масла моторні', 'Масла моторні Toyota',
+                                 'UA': ('Масла моторні', 'Масла моторні Toyota',
                                                    'Масло моторное Toyota ENGINE OIL 5W-30, 5 л Toyota 08880-80845'),
-                                            'EN': ('Engine oils', 'Engine oils Toyota',
+                                 'EN': ('Engine oils', 'Engine oils Toyota',
                                                    'Масло моторное Toyota ENGINE OIL 5W-30, 5 л Toyota 08880-80845')},
                'category': {'RU': ('Масла, жидкости и автохимия', 'Жидкости', 'Антифриз (охлаждающая жидкость)'),
                             'UA': ('Масла, рідини і автохімія', 'Рідини', 'Рідини охолоджуючі та супутні товари'),
@@ -252,6 +252,3 @@ all_type_models = {
     'UA': 'ВСІ ТИПИ МОДЕЛЕЙ TOYOTA YARIS',
     'EN': 'ALL MODEL TYPES TOYOTA YARIS'
 }
-
-seo_card_h1 = {'upc_with_brand': 'Toyota 08880-80845',
-               'ware_just_num': '(0888080845)'}

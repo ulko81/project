@@ -54,3 +54,9 @@ class CatalogPage(BasePage, MixinCatalog):
     @property
     def text_title_all_type_models(self):
         return self.get_web_element(self.cars_block_title).text
+
+    def fill_search_field(self, query):
+        self.get_web_element(self.input_search_field).send_keys(query)
+
+    def click_category_in_search_result(self):
+        self.click(self.category_in_search_result)

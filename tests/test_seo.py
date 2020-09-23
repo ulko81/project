@@ -1,7 +1,7 @@
 import pytest
 import requests
 from deepdiff import DeepDiff
-from settings.project_setting import TEST_URL, language, test_car, language_to_url
+from settings.project_setting import TEST_URL, language, test_car, language_to_url, product
 from settings.project_page import *
 from pages.main_page import MainPage
 from pages.catalog_page import CatalogPage
@@ -203,5 +203,5 @@ class TestSEOCSR(Methods):
         self.change_language(self.driver, current_language)
         seo = SeoPage(self.driver)
         h1 = seo.text_title_h1
-        assert seo_card_h1.get('upc_with_brand') in h1
-        assert seo_card_h1.get('ware_just_num') in h1
+        assert f"{product.get('brand')} {product.get('upc')}" in h1
+        assert product.get('ware_just_num') in h1

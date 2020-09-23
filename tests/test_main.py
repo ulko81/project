@@ -27,3 +27,4 @@ class Testmain(Methods):
         assert len(actual_title_blocks) == len(expected_title_blocks)
         for i in range(len(expected_title_blocks)):
             assert actual_title_blocks[i] == expected_title_blocks[i]
+
