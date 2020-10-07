@@ -22,12 +22,15 @@ test_car = {
     'model_slug': 'toyota-cars/yaris',
     'type_model': 'Yaris (P13)',
     'modification': 'Toyota Yaris (P13) 1.0 (KSP130)',
-    'vin': 'VNKKL0D380A019143'
+    'vin': 'VNKKL0D380A019143',
 }
 
-product = {'upc': '08880-80845',
-           'ware_just_num': '(0888080845)',
-           'brand': 'Toyota'}
+product = {
+    'upc': '08880-80845',
+    'ware_just_num': '(0888080845)',
+    'brand': 'Toyota'
+}
+
 
 user_contract = ''
 user_multi_contract = ''

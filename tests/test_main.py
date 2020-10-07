@@ -6,23 +6,25 @@ from helpers.methods import Methods
 
 @pytest.mark.usefixtures('get_driver')
 class Testmain(Methods):
-    title_blocks = {
-        'RU': ('НЕОБХОДИМОЕ ДЛЯ КАЖДОГО АВТО', 'ПОПУЛЯРНЫЕ МОДЕЛИ АВТО', 'ПОПУЛЯРНЫЕ МАРКИ', 'ПОПУЛЯРНЫЕ ЗАПЧАСТИ',
-               'ПОПУЛЯРНЫЕ БРЕНДЫ АВТОЗАПЧАСТЕЙ', 'АВТОГИД ПОМОЩНИК ПО УДОБНОМУ ИСПОЛЬЗОВАНИЮ АВТОМОБИЛЯ'),
-        'UA': ('НЕОБХІДНЕ ДЛЯ КОЖНОГО АВТО', 'ПОПУЛЯРНІ МОДЕЛІ АВТО', 'ПОПУЛЯРНІ МАРКИ', 'ПОПУЛЯРНІ ЗАПЧАСТИНИ',
-               'ПОПУЛЯРНІ БРЕНДИ АВТОЗАПЧАСТИН', 'АВТОГІД ПОМІЧНИК ПО ЗРУЧНОМУ ВИКОРИСТАННЮ АВТОМОБІЛЯ'),
-        'EN': ('NECESSARY FOR EVERY CAR', 'POPULAR CAR MODELS', 'POPULAR MANUFACTURES', 'POPULAR PARTS',
-               'POPULAR SPARE PARTS BRANDS', 'AUTO GUIDANCE VEHICLE USABILITY ASSISTANT')
-    }
 
     @pytest.mark.smoke
     @pytest.mark.main
     @pytest.mark.parametrize('current_language', language)
     def test_block_header_main_page(self, current_language):
+
+        title_blocks = {
+            'RU': ('НЕОБХОДИМОЕ ДЛЯ КАЖДОГО АВТО', 'ПОПУЛЯРНЫЕ МОДЕЛИ АВТО', 'ПОПУЛЯРНЫЕ МАРКИ', 'ПОПУЛЯРНЫЕ ЗАПЧАСТИ',
+                   'ПОПУЛЯРНЫЕ БРЕНДЫ АВТОЗАПЧАСТЕЙ', 'АВТОГИД ПОМОЩНИК ПО УДОБНОМУ ИСПОЛЬЗОВАНИЮ АВТОМОБИЛЯ'),
+            'UA': ('НЕОБХІДНЕ ДЛЯ КОЖНОГО АВТО', 'ПОПУЛЯРНІ МОДЕЛІ АВТО', 'ПОПУЛЯРНІ МАРКИ', 'ПОПУЛЯРНІ ЗАПЧАСТИНИ',
+                   'ПОПУЛЯРНІ БРЕНДИ АВТОЗАПЧАСТИН', 'АВТОГІД ПОМІЧНИК ПО ЗРУЧНОМУ ВИКОРИСТАННЮ АВТОМОБІЛЯ'),
+            'EN': ('NECESSARY FOR EVERY CAR', 'POPULAR CAR MODELS', 'POPULAR MANUFACTURES', 'POPULAR PARTS',
+                   'POPULAR SPARE PARTS BRANDS', 'AUTO GUIDANCE VEHICLE USABILITY ASSISTANT')
+        }
+
         main = MainPage(self.driver)
         self.driver.get(TEST_URL)
         self.change_language(self.driver, current_language)
-        expected_title_blocks = self.title_blocks.get(current_language)
+        expected_title_blocks = title_blocks.get(current_language)
         actual_title_blocks = main.text_title_block
         assert len(actual_title_blocks) == len(expected_title_blocks)
         for i in range(len(expected_title_blocks)):

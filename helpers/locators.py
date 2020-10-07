@@ -65,6 +65,7 @@ class Locators:
     grid_table_vendor_code = By.CSS_SELECTOR, '.grid-table .name a strong'
     grid_table_delivery_date = By.CSS_SELECTOR, '.grid-table .delivery, .grid-table .exists'
     grid_table_price_sum = By.CSS_SELECTOR, '.grid-table .total'
+    grid_table_manufacture = By.CSS_SELECTOR, '.grid-table td:first-child a'
 
     garage_dd_content_button_blue = By.CSS_SELECTOR, '.garage-dd-content .btn-blue'
 
@@ -112,10 +113,13 @@ class Locators:
     modal_grid_vendor_code = By.CSS_SELECTOR, '.modal-grid .name a strong'
     modal_grid_delivery = By.CSS_SELECTOR, '.modal-grid .delivery, .modal-grid .exists'
 
+    modal_tooltip_faq = By.CLASS_NAME, 'modal-tooltip-faq p'
+
     mega_menu_link = By.CLASS_NAME, 'mega-menu-link'
 
     multi_search_input = By.CLASS_NAME, 'multi-search-input'
     multi_search_results_wrapper = By.CLASS_NAME, 'multi-search-results-wrapper'
+    multi_search_results_block_title = By.CSS_SELECTOR, '.multi-search-results .block-title'
 
     name_inner_vendor_code = By.CSS_SELECTOR, '.name-inner a strong'
     name_inner_name = By.CSS_SELECTOR, '.name-inner p'
@@ -130,7 +134,6 @@ class Locators:
     nested_row_0_delivery = By.CSS_SELECTOR, '.nested-row-0:nth-child(1) .general-info .delivery'
 
     new_search_toggler_body = By.CLASS_NAME, 'new-search-toggler-body'
-
 
     popular_manufactures = By.CSS_SELECTOR, '.popular-manufactures-container a'
     popular_models = By.CSS_SELECTOR, '.popular-models-block a'
@@ -165,6 +168,8 @@ class Locators:
 
     total_wrapper_price_total = By.CSS_SELECTOR, '.total-wrapper .total'
 
+    unit_map_info_button = By.CSS_SELECTOR, '.unit-map-info button'
+
     user_title_username = By.CSS_SELECTOR, '.user-title span'
 
     user_menu_toggler = By.CLASS_NAME, 'user-menu-toggler '
@@ -179,3 +184,4 @@ class Locators:
     my_car_selected_car = By.CSS_SELECTOR, '.garage  div[title = "Выбранный автомобиль"]'
     profile_anonim = By.CSS_SELECTOR, '.profile button'
     profile_avtorpol = By.CSS_SELECTOR, '.profile .colored .user-menu-title'
+

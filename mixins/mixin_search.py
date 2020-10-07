@@ -1,5 +1,6 @@
 from helpers.locators import Locators
 
+
 class MixinSearch:
     def __init__(self):
         self.locators = Locators()
