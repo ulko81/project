@@ -16,3 +16,4 @@ class MixinCatalog:
         self.cars_block_title = self.locators.car_descendants_wrapper_h2
         self.input_search_field = self.locators.search_input
         self.category_in_search_result = self.locators.search_results_a
+        self.title = self.locators.h1

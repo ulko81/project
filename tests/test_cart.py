@@ -10,7 +10,7 @@ from pages.full_search_product_page import FullSearchProductPage
 from pages.module_page import ModulePage
 from pages.request_by_vin_page import RequestByVinPage
 from settings.project_setting import TEST_URL
-from settings.project_page import project_page
+from helpers.project_page import project_page
 from helpers.methods import Methods
 
 

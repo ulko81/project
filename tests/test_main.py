@@ -1,6 +1,7 @@
 import pytest
 from pages.main_page import MainPage
-from settings.project_setting import TEST_URL, language
+from settings.project_setting import TEST_URL
+from helpers.general_data import language
 from helpers.methods import Methods
 
 
@@ -29,4 +30,3 @@ class Testmain(Methods):
         assert len(actual_title_blocks) == len(expected_title_blocks)
         for i in range(len(expected_title_blocks)):
             assert actual_title_blocks[i] == expected_title_blocks[i]
-

@@ -120,6 +120,12 @@ class Locators:
     multi_search_input = By.CLASS_NAME, 'multi-search-input'
     multi_search_results_wrapper = By.CLASS_NAME, 'multi-search-results-wrapper'
     multi_search_results_block_title = By.CSS_SELECTOR, '.multi-search-results .block-title'
+    multi_search_sidebar_brand = By.CSS_SELECTOR, '.multi-search-sidebar .multi-search-brands a'
+    multi_search_body_brand = By.CSS_SELECTOR, '.multi-search-body .multi-search-brands a'
+    multi_search_sidebar_section = By.CSS_SELECTOR, '.multi-search-sidebar .multi-search-sections a'
+    multi_search_sidebar_category_name = By.CSS_SELECTOR, '.multi-search-sidebar .multi-search-categories strong'
+    multi_search_sidebar_category_link = By.CSS_SELECTOR, '.multi-search-sidebar .multi-search-categories a'
+    multi_search_body_category = By.CSS_SELECTOR, '.multi-search-body .multi-search-categories a'
 
     name_inner_vendor_code = By.CSS_SELECTOR, '.name-inner a strong'
     name_inner_name = By.CSS_SELECTOR, '.name-inner p'

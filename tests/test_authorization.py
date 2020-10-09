@@ -4,7 +4,7 @@ from pages.checkout_page import CheckoutPage
 from pages.card_page import CardPage
 from pages.module_page import ModulePage
 from settings.project_setting import TEST_URL, test_user
-from settings.project_page import project_page
+from helpers.project_page import project_page
 from helpers.methods import Methods
 
 

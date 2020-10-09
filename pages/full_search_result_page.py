@@ -21,15 +21,31 @@ class FullSearchResultPage(BasePage, MixinFullSearch_Result):
     def click_manafacture(self):
         self.click(self.car_manufacture)
 
-    #def click_sidebar_brand(self):
-    #    self.click(self.sidebar_brand)
-
-    #def click_body_brand(self):
-    #    self.click(self.body_brand)
-
-    #def click_group(self, group):
-    #    item = f'{self.group[0]}', f'{self.group[1].format(group)}'
-    #    print(item)
-        #self.click(item)
+    def click_brand(self, side):
+        self.click(self.sidebar_brand) if side == 'sidebar' else self.click(self.body_brand)
 
 
+    def click_body_brand(self):
+        self.click(self.body_brand)
+
+    def click_first_group(self):
+        self.get_first_visible_element(self.group).click()
+
+    @property
+    def text_first_group(self):
+        return self.get_first_visible_element(self.group).text
+
+    @property
+    def url_first_group(self):
+        return self.get_first_visible_element(self.group).get_attribute('href')
+
+    def text_first_category(self, side):
+        return self.get_first_visible_element(self.sidebar_category_name).text if side == 'sidebar' else \
+            self.get_first_visible_element(self.body_category).text
+
+    def url_first_category(self, side):
+        return self.get_first_visible_element(self.sidebar_category_link).get_attribute('href')if side == 'sidebar' else \
+            self.get_first_visible_element(self.body_category).get_attribute('href')
+
+    def click_first_category(self, side):
+        self.click(self.sidebar_category_link)if side == 'sidebar' else self.click(self.body_category)

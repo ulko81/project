@@ -2,9 +2,9 @@ import json
 import random
 import requests
 from bs4 import BeautifulSoup
-from helpers.dict_helper import *
+from helpers.general_data import *
 from settings.project_setting import TEST_URL
-from settings.project_page import project_page
+from helpers.project_page import project_page
 
 
 def change_format_date_cart(date):

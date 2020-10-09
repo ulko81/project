@@ -60,3 +60,10 @@ class CatalogPage(BasePage, MixinCatalog):
 
     def click_category_in_search_result(self):
         self.click(self.category_in_search_result)
+
+    @property
+    def text_title(self):
+        return self.get_web_element(self.title).text
+
+    def check_title(self, text):
+        return self.text_present_in_element(self.title, text)

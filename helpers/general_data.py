@@ -18,3 +18,10 @@ language_cur = {
     'ua': 'грн',
     'en': 'uah'
 }
+
+language_to_url = {
+    'RU': '',
+    'UA': '/uk',
+    'EN': '/en'
+}
+language = ('RU', 'UA', 'EN')

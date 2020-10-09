@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.options import Options as Chrome
 from selenium.webdriver.firefox.options import Options as Firefox
 
 
+
+
 class Browser:
     BROWSER_NAME = 'chrome'
 

@@ -1,13 +1,14 @@
 import pytest
 import requests
 from deepdiff import DeepDiff
-from settings.project_setting import TEST_URL, language, test_car, language_to_url, product
-from settings.project_page import *
+from settings.project_setting import TEST_URL, test_car, product
+from helpers.general_data import language, language_to_url
+from helpers.project_page import *
 from pages.main_page import MainPage
 from pages.catalog_page import CatalogPage
 from pages.card_page import CardPage
 from pages.seo_page import SeoPage
-from helpers.seo_text import *
+from helpers.seo_data import *
 from helpers.functions import get_sitemap_links, text_attr_robots, get_attrs_rel_prev_next, get_microdata_type, \
     get_microdata_types, text_title, text_description, get_microdata_breadcrumbs, change_symbols
 from helpers.methods import Methods

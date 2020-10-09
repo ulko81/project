@@ -1,6 +1,7 @@
 import pytest
 from pages.header_page import HeaderPage
-from settings.project_setting import TEST_URL, language
+from settings.project_setting import TEST_URL
+from helpers.general_data import language
 from helpers.methods import Methods
 
 

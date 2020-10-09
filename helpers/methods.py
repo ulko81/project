@@ -62,7 +62,7 @@ class Methods:
         if os.environ.get('CI'):
             return os.environ.get('USER_LOGIN')
         else:
-            from settings.user_setting import user_login
+            from settings.x_setting import user_login
             return user_login
 
     @property
@@ -70,7 +70,7 @@ class Methods:
         if os.environ.get('CI'):
             return os.environ.get('USER_LOGIN')
         else:
-            from settings.user_setting import multi_user_login
+            from settings.x_setting import multi_user_login
             return multi_user_login
 
     @property
@@ -78,7 +78,7 @@ class Methods:
         if os.environ.get('CI'):
             return os.environ.get('USER_PASS')
         else:
-            from settings.user_setting import user_pass
+            from settings.x_setting import user_pass
             return user_pass
 
     def login(self, driver, login=None, password=None):
