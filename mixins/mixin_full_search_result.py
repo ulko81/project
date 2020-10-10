@@ -1,7 +1,7 @@
 from helpers.locators import Locators
 
 
-class MixinFullSearch_Result:
+class MixinFullSearchResult:
     def __init__(self):
         self.locators = Locators()
         self.full_search_result_title_block = self.locators.multi_search_results_block_title
@@ -14,3 +14,6 @@ class MixinFullSearch_Result:
         self.sidebar_category_name = self.locators.multi_search_sidebar_category_name
         self.sidebar_category_link = self.locators.multi_search_sidebar_category_link
         self.body_category = self.locators.multi_search_body_category
+        self.more_button_categories = self.locators.multi_search_categories_button_more
+        self.more_button_products = self.locators.multi_search_products_button_more
+

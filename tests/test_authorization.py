@@ -14,6 +14,7 @@ class TestAuthorization(Methods):
     @pytest.mark.smoke
     @pytest.mark.auth
     def test_auth_simple(self):
+        """Test 1"""
         self.driver.get(TEST_URL)
         header = HeaderPage(self.driver)
         self.login(self.driver)
@@ -22,6 +23,7 @@ class TestAuthorization(Methods):
     @pytest.mark.smoke
     @pytest.mark.auth
     def test_auth_checkout_page(self):
+        """Test 2"""
         header = HeaderPage(self.driver)
         card = CardPage(self.driver)
         module = ModulePage(self.driver)
@@ -39,6 +41,7 @@ class TestAuthorization(Methods):
     @pytest.mark.smoke
     @pytest.mark.auth
     def test_auth_multi(self):
+        """Test 3"""
         self.driver.get(TEST_URL)
         header = HeaderPage(self.driver)
         self.login_multi(self.driver)
@@ -47,6 +50,7 @@ class TestAuthorization(Methods):
     @pytest.mark.smoke
     @pytest.mark.auth
     def test_auth_checkout_page(self):
+        """Test 4"""
         header = HeaderPage(self.driver)
         card = CardPage(self.driver)
         module = ModulePage(self.driver)

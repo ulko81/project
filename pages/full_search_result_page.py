@@ -1,11 +1,11 @@
 from pages.base_page import BasePage
-from mixins.mixin_full_search_result import MixinFullSearch_Result
+from mixins.mixin_full_search_result import MixinFullSearchResult
 
 
-class FullSearchResultPage(BasePage, MixinFullSearch_Result):
+class FullSearchResultPage(BasePage, MixinFullSearchResult):
     def __init__(self, driver):
         BasePage.__init__(self, driver)
-        MixinFullSearch_Result.__init__(self)
+        MixinFullSearchResult.__init__(self)
 
     @property
     def text_full_search_result_title_block(self):
@@ -23,7 +23,6 @@ class FullSearchResultPage(BasePage, MixinFullSearch_Result):
 
     def click_brand(self, side):
         self.click(self.sidebar_brand) if side == 'sidebar' else self.click(self.body_brand)
-
 
     def click_body_brand(self):
         self.click(self.body_brand)
@@ -49,3 +48,9 @@ class FullSearchResultPage(BasePage, MixinFullSearch_Result):
 
     def click_first_category(self, side):
         self.click(self.sidebar_category_link)if side == 'sidebar' else self.click(self.body_category)
+
+    def click_more_button_categories(self):
+        self.click(self.more_button_categories)
+
+    def click_more_button_products(self):
+        self.click(self.more_button_products)

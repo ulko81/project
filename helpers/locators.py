@@ -126,6 +126,9 @@ class Locators:
     multi_search_sidebar_category_name = By.CSS_SELECTOR, '.multi-search-sidebar .multi-search-categories strong'
     multi_search_sidebar_category_link = By.CSS_SELECTOR, '.multi-search-sidebar .multi-search-categories a'
     multi_search_body_category = By.CSS_SELECTOR, '.multi-search-body .multi-search-categories a'
+    multi_search_categories_button_more = By.CSS_SELECTOR, '.multi-search-categories~a'
+    multi_search_products_button_more = By.CSS_SELECTOR, 'multi-search-products~a'
+
 
     name_inner_vendor_code = By.CSS_SELECTOR, '.name-inner a strong'
     name_inner_name = By.CSS_SELECTOR, '.name-inner p'
