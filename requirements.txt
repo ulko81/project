@@ -3,6 +3,6 @@ pytest>=4.4.0
 pytest-html==2.1.1
 requests == 2.23.0
 bs4 == 0.0.1
-py == 1.8.2
+py == 1.10.0
 pytest-xvfb == 2.0.0
 deepdiff>=5.0.1
